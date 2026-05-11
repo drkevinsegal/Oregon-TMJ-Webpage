@@ -896,6 +896,61 @@
       .approach-treatment { grid-template-columns: 1fr; }
       .appt-form { padding: 28px 20px; }
       .footer-bottom { flex-direction: column; text-align: center; }
+
+      /* ── MOBILE HERO LAYOUT ── */
+      #hero {
+        min-height: unset;
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 72px;
+      }
+      /* Slideshow becomes a fixed-height image block at top */
+      .hero-video-wrap {
+        position: relative;
+        height: 55vw;
+        min-height: 220px;
+        max-height: 320px;
+        flex-shrink: 0;
+      }
+      .hero-slideshow { position: absolute; inset: 0; }
+      /* Use desktop images on mobile — hide mobile source */
+      .hero-slide picture source { display: none; }
+      .hero-slide picture img { display: block; }
+      /* Trust pill overlays the image */
+      .hero-overlay { display: none; }
+      .hero-glow, .hero-glow-red { display: none; }
+      /* Image overlay just on the photo block */
+      .hero-video-wrap::after {
+        content: '';
+        position: absolute; inset: 0; z-index: 1;
+        background: linear-gradient(to bottom, rgba(26,35,40,0.2) 0%, rgba(26,35,40,0.5) 100%);
+        pointer-events: none;
+      }
+      /* Trust pill sits at bottom of image */
+      .hero-trust-pill {
+        position: absolute;
+        bottom: 16px; left: 50%; transform: translateX(-50%);
+        z-index: 3;
+        white-space: nowrap;
+        margin-bottom: 0;
+      }
+      /* Arrows sit on image */
+      .slide-arrow { top: 45%; }
+      .slide-dots { bottom: 52px; }
+      /* Content block sits below image on dark background */
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        background: var(--near-black);
+        padding: 32px 0 48px;
+        width: 100%;
+      }
+      .hero-h1 { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 16px; }
+      .hero-sub { font-size: 0.95rem; margin-bottom: 28px; max-width: 100%; }
+      .hero-ctas { flex-direction: column; gap: 10px; margin-bottom: 32px; }
+      .hero-ctas .btn { width: 100%; text-align: center; justify-content: center; }
+      /* Move trust pill out of absolute positioning in content area */
+      .hero-left .hero-trust-pill { display: none; }
     }
   </style>
 </head>
