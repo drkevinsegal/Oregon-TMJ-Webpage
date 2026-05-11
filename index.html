@@ -1997,22 +1997,24 @@
     startTimer();
   })();
   (function() {
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots   = document.querySelectorAll('.slide-dot');
+    const slideshow = document.getElementById('hero-slideshow');
+    if (!slideshow) return;
+    const slides = slideshow.querySelectorAll('.hero-slide');
+    const dotsWrap = slideshow.closest('.hero-video-wrap') || document;
+    const dots   = document.querySelectorAll('.slide-dots:not(.hero-mobile-images .slide-dots) .slide-dot');
     const prev   = document.getElementById('slide-prev');
     const next   = document.getElementById('slide-next');
+    if (!slides.length || !prev || !next) return;
     let current  = 0;
     let timer;
-    const INTERVAL = 6000; // 6 seconds
+    const INTERVAL = 6000;
 
     function goTo(index) {
       slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      dots[current].setAttribute('aria-selected', 'false');
+      if (dots[current]) { dots[current].classList.remove('active'); dots[current].setAttribute('aria-selected', 'false'); }
       current = (index + slides.length) % slides.length;
       slides[current].classList.add('active');
-      dots[current].classList.add('active');
-      dots[current].setAttribute('aria-selected', 'true');
+      if (dots[current]) { dots[current].classList.add('active'); dots[current].setAttribute('aria-selected', 'true'); }
     }
 
     function startTimer() {
@@ -2024,12 +2026,9 @@
     next.addEventListener('click', () => { goTo(current + 1); startTimer(); });
     dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startTimer(); }));
 
-    // Pause on hover
-    const slideshow = document.getElementById('hero-slideshow');
     slideshow.addEventListener('mouseenter', () => clearInterval(timer));
     slideshow.addEventListener('mouseleave', startTimer);
 
-    // Keyboard support
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft')  { goTo(current - 1); startTimer(); }
       if (e.key === 'ArrowRight') { goTo(current + 1); startTimer(); }
