@@ -902,55 +902,54 @@
         min-height: unset;
         flex-direction: column;
         align-items: stretch;
-        padding-top: 72px;
+        padding-top: 0;
       }
-      /* Slideshow becomes a fixed-height image block at top */
+      /* Image block fills from top of page including behind nav */
       .hero-video-wrap {
         position: relative;
-        height: 55vw;
-        min-height: 220px;
-        max-height: 320px;
+        height: 75vw;
+        min-height: 280px;
+        max-height: 420px;
         flex-shrink: 0;
+        margin-top: 0;
       }
       .hero-slideshow { position: absolute; inset: 0; }
-      /* Use desktop images on mobile — hide mobile source */
+      /* Use desktop images on mobile */
       .hero-slide picture source { display: none; }
-      .hero-slide picture img { display: block; }
-      /* Trust pill overlays the image */
-      .hero-overlay { display: none; }
+      .hero-slide picture img { display: block; object-position: center center; }
+      /* Light gradient at bottom of image for readability */
+      .hero-overlay { 
+        background: linear-gradient(to bottom, 
+          rgba(26,35,40,0.15) 0%, 
+          rgba(26,35,40,0.6) 85%, 
+          rgba(26,35,40,1) 100%);
+      }
       .hero-glow, .hero-glow-red { display: none; }
-      /* Image overlay just on the photo block */
-      .hero-video-wrap::after {
-        content: '';
-        position: absolute; inset: 0; z-index: 1;
-        background: linear-gradient(to bottom, rgba(26,35,40,0.2) 0%, rgba(26,35,40,0.5) 100%);
-        pointer-events: none;
-      }
-      /* Trust pill sits at bottom of image */
-      .hero-trust-pill {
-        position: absolute;
-        bottom: 16px; left: 50%; transform: translateX(-50%);
-        z-index: 3;
-        white-space: nowrap;
-        margin-bottom: 0;
-      }
-      /* Arrows sit on image */
-      .slide-arrow { top: 45%; }
-      .slide-dots { bottom: 52px; }
-      /* Content block sits below image on dark background */
+      /* Arrows and dots sit on image */
+      .slide-arrow { top: 50%; }
+      .slide-dots { bottom: 16px; }
+      /* Trust pill hidden on mobile — shown in content block instead */
+      .hero-trust-pill { display: none; }
+      /* Content block sits below image */
       .hero-content {
         position: relative;
         z-index: 2;
         background: var(--near-black);
-        padding: 32px 0 48px;
+        padding: 28px 0 48px;
         width: 100%;
+        margin-top: -2px;
+      }
+      /* Show trust pill inside content block on mobile */
+      .hero-content .hero-trust-pill {
+        display: inline-flex;
+        position: relative;
+        bottom: auto; left: auto; transform: none;
+        margin-bottom: 20px;
       }
       .hero-h1 { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 16px; }
       .hero-sub { font-size: 0.95rem; margin-bottom: 28px; max-width: 100%; }
       .hero-ctas { flex-direction: column; gap: 10px; margin-bottom: 32px; }
       .hero-ctas .btn { width: 100%; text-align: center; justify-content: center; }
-      /* Move trust pill out of absolute positioning in content area */
-      .hero-left .hero-trust-pill { display: none; }
     }
   </style>
 </head>
