@@ -273,9 +273,9 @@
     .slide-dot.active { background: #fff; transform: scale(1.3); }
 
     /* Mobile-only trust pill — hidden on desktop */
-    .hero-trust-pill-mobile {
-      display: none;
-    }
+    .hero-trust-pill-mobile { display: none; }
+    /* Mobile-only image block — hidden on desktop */
+    .hero-mobile-images { display: none; }
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
         135deg,
@@ -912,30 +912,26 @@
         background: rgba(26,35,40,0.98) !important;
         backdrop-filter: blur(16px);
       }
-      /* Image block — 16:9 ratio matches uploaded photo dimensions exactly */
-      .hero-video-wrap {
+      /* Hide the complex slideshow on mobile */
+      .hero-video-wrap { display: none; }
+      .hero-overlay, .hero-glow, .hero-glow-red { display: none; }
+      /* Simple mobile image block */
+      .hero-mobile-images {
+        display: block;
         position: relative;
         width: 100%;
-        padding-bottom: 56.25%;
-        height: 0;
-        flex-shrink: 0;
       }
-      .hero-slideshow { position: absolute; inset: 0; }
-      .hero-slide picture source { display: none; }
-      .hero-slide img {
-        object-fit: cover !important;
-        object-position: center center !important;
-        width: 100% !important;
-        height: 100% !important;
+      .hero-mobile-slide {
+        display: none;
+        position: relative;
       }
-      /* Subtle gradient at very bottom of image only */
-      .hero-overlay {
-        background: linear-gradient(to bottom,
-          transparent 60%,
-          rgba(26,35,40,0.7) 100%);
+      .hero-mobile-slide.active { display: block; }
+      .hero-mobile-slide img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
-      .hero-glow, .hero-glow-red { display: none; }
-      /* Mobile trust pill — bottom left of image */
+      /* Trust pill over mobile image */
       .hero-trust-pill-mobile {
         display: inline-flex;
         align-items: center;
@@ -955,11 +951,26 @@
         font-family: 'DM Sans', sans-serif;
         white-space: nowrap;
       }
+      /* Mobile slide arrows */
+      .hero-mobile-images .slide-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 4;
+      }
+      .hero-mobile-images .slide-arrow.prev { left: 10px; }
+      .hero-mobile-images .slide-arrow.next { right: 10px; }
+      /* Mobile dots */
+      .hero-mobile-images .slide-dots {
+        position: absolute;
+        bottom: 14px;
+        right: 14px;
+        left: auto;
+        transform: none;
+        z-index: 4;
+      }
       /* Hide desktop trust pill on mobile */
       .hero-trust-pill { display: none !important; }
-      /* Arrows on image */
-      .slide-arrow { top: 40%; }
-      .slide-dots { bottom: 14px; right: 14px; left: auto; transform: none; }
       /* Content block below image */
       .hero-content {
         position: relative;
@@ -1029,6 +1040,30 @@
 
 <!-- ═══════════════════════════ HERO ══════════════════════════ -->
 <section id="hero" aria-labelledby="hero-heading">
+  <!-- Mobile-only slideshow — simple natural image sizing, hidden on desktop -->
+  <div class="hero-mobile-images" id="hero-mobile-images">
+    <div class="hero-mobile-slide active">
+      <img src="Assets/images/tmj-hero-desktop-1920.webp" alt="Chiropractic TMJ jaw treatment">
+    </div>
+    <div class="hero-mobile-slide">
+      <img src="Assets/images/oregon-tmj-laser-hero-desktop.webp" alt="Laser TMJ therapy treatment">
+    </div>
+    <!-- Trust pill -->
+    <div class="hero-trust-pill-mobile" aria-hidden="true">
+      <span class="trust-pulse"></span>
+      CHIROPRACTIC TMJ THERAPY
+      <span class="trust-pulse"></span>
+    </div>
+    <!-- Arrows -->
+    <button class="slide-arrow prev" id="mobile-slide-prev" aria-label="Previous image">&#8592;</button>
+    <button class="slide-arrow next" id="mobile-slide-next" aria-label="Next image">&#8594;</button>
+    <!-- Dots -->
+    <div class="slide-dots">
+      <button class="slide-dot active" aria-label="Slide 1"></button>
+      <button class="slide-dot" aria-label="Slide 2"></button>
+    </div>
+  </div>
+
   <div class="hero-video-wrap" aria-hidden="true">
     <!--
       ════════════════════════════════════════════════
@@ -1932,7 +1967,35 @@
   }, { passive: true });
   if (window.scrollY > 40) nav.classList.add('scrolled');
 
-  // ── HERO SLIDESHOW ──────────────────────────────
+  // ── MOBILE HERO SLIDESHOW ───────────────────────
+  (function() {
+    const mobileImages = document.getElementById('hero-mobile-images');
+    if (!mobileImages) return;
+    const slides = mobileImages.querySelectorAll('.hero-mobile-slide');
+    const dots   = mobileImages.querySelectorAll('.slide-dot');
+    const prev   = document.getElementById('mobile-slide-prev');
+    const next   = document.getElementById('mobile-slide-next');
+    if (!slides.length) return;
+    let current = 0;
+    let timer;
+    const INTERVAL = 6000;
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), INTERVAL);
+    }
+    if (prev) prev.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+    if (next) next.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startTimer(); }));
+    startTimer();
+  })();
   (function() {
     const slides = document.querySelectorAll('.hero-slide');
     const dots   = document.querySelectorAll('.slide-dot');
