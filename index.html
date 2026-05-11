@@ -230,19 +230,47 @@
       object-fit: cover; object-position: center;
     }
 
-    /* Video placeholder shown until real video is added */
-    .hero-video-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(145deg, #1A2328 0%, #2A3A44 40%, #3D4F5C 100%);
-      display: flex; align-items: center; justify-content: center;
+    /* ── HERO SLIDESHOW ───────────────────────────── */
+    .hero-slideshow {
+      position: absolute; inset: 0; z-index: 0;
+      overflow: hidden;
     }
-    /* Subtle animated grain texture on placeholder */
-    .hero-video-placeholder::after {
-      content: '';
+    .hero-slide {
       position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.4; pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
     }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      display: block;
+    }
+    /* Slideshow nav arrows */
+    .slide-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 3; background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      color: #fff; width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.1rem;
+      transition: background 0.2s ease;
+    }
+    .slide-arrow:hover { background: rgba(255,255,255,0.25); }
+    .slide-arrow.prev { left: 20px; }
+    .slide-arrow.next { right: 20px; }
+    /* Dot indicators */
+    .slide-dots {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      z-index: 3; display: flex; gap: 8px;
+    }
+    .slide-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.35); border: none;
+      cursor: pointer; transition: background 0.3s ease, transform 0.3s ease;
+      padding: 0;
+    }
+    .slide-dot.active { background: #fff; transform: scale(1.3); }
 
     /* Dark overlay over video */
     .hero-overlay {
@@ -944,8 +972,37 @@
       <source src="assets/video/hero-video.webm" type="video/webm">
     </video>
     -->
-    <!-- Remove the div below once your video is added -->
-    <div class="hero-video-placeholder"></div>
+    <!-- 
+      HERO SLIDESHOW — ADD MORE SLIDES BY COPYING A .hero-slide BLOCK
+      Images load responsive sizes via <picture> for fast load on all devices
+    -->
+    <div class="hero-slideshow" id="hero-slideshow" aria-label="Hero image slideshow">
+      <!-- Slide 1 — TMJ Jaw Treatment -->
+      <div class="hero-slide active" role="img" aria-label="Chiropractic TMJ jaw treatment">
+        <picture>
+          <source media="(max-width: 640px)"  srcset="Assets/images/tmj-hero-mobile-1080x1350.webp" type="image/webp">
+          <source media="(max-width: 1024px)" srcset="Assets/images/tmj-hero-tablet-1536x1024.webp" type="image/webp">
+          <img src="Assets/images/tmj-hero-desktop-1920.webp" alt="Chiropractic TMJ jaw treatment" loading="eager">
+        </picture>
+      </div>
+      <!-- Slide 2 — Laser TMJ Treatment -->
+      <div class="hero-slide" role="img" aria-label="Laser TMJ therapy treatment">
+        <picture>
+          <source media="(max-width: 640px)"  srcset="Assets/images/oregon-tmj-laser-hero-mobile.webp" type="image/webp">
+          <source media="(max-width: 1024px)" srcset="Assets/images/oregon-tmj-laser-hero-tablet.webp" type="image/webp">
+          <img src="Assets/images/oregon-tmj-laser-hero-desktop.webp" alt="Laser TMJ therapy treatment" loading="lazy">
+        </picture>
+      </div>
+      <!-- Add more slides here -->
+    </div>
+    <!-- Slideshow arrows -->
+    <button class="slide-arrow prev" id="slide-prev" aria-label="Previous image">&#8592;</button>
+    <button class="slide-arrow next" id="slide-next" aria-label="Next image">&#8594;</button>
+    <!-- Dot indicators -->
+    <div class="slide-dots" role="tablist" aria-label="Slideshow navigation">
+      <button class="slide-dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
+      <button class="slide-dot"        role="tab" aria-selected="false" aria-label="Slide 2"></button>
+    </div>
   </div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
@@ -1792,6 +1849,49 @@
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
   if (window.scrollY > 40) nav.classList.add('scrolled');
+
+  // ── HERO SLIDESHOW ──────────────────────────────
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots   = document.querySelectorAll('.slide-dot');
+    const prev   = document.getElementById('slide-prev');
+    const next   = document.getElementById('slide-next');
+    let current  = 0;
+    let timer;
+    const INTERVAL = 6000; // 6 seconds
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      dots[current].setAttribute('aria-selected', 'false');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      dots[current].setAttribute('aria-selected', 'true');
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), INTERVAL);
+    }
+
+    prev.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+    next.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startTimer(); }));
+
+    // Pause on hover
+    const slideshow = document.getElementById('hero-slideshow');
+    slideshow.addEventListener('mouseenter', () => clearInterval(timer));
+    slideshow.addEventListener('mouseleave', startTimer);
+
+    // Keyboard support
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  { goTo(current - 1); startTimer(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1); startTimer(); }
+    });
+
+    startTimer();
+  })();
 
   // Hamburger menu - with ARIA state management
   const hamburger = document.getElementById('hamburger');
