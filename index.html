@@ -1091,7 +1091,6 @@
     -->
     <!-- 
       HERO SLIDESHOW — ADD MORE SLIDES BY COPYING A .hero-slide BLOCK
-      Images load responsive sizes via <picture> for fast load on all devices
     -->
     <div class="hero-slideshow" id="hero-slideshow" aria-label="Hero image slideshow">
       <!-- Slide 1 — TMJ Jaw Treatment -->
@@ -1112,24 +1111,15 @@
       </div>
       <!-- Add more slides here -->
     </div>
-    <!-- Slideshow arrows — outside hero-video-wrap so z-index works correctly -->
-    <button class="slide-arrow prev" id="slide-prev" aria-label="Previous image">&#8592;</button>
-    <button class="slide-arrow next" id="slide-next" aria-label="Next image">&#8594;</button>
-    <!-- Dot indicators -->
-    <div class="slide-dots" role="tablist" aria-label="Slideshow navigation">
-      <button class="slide-dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
-      <button class="slide-dot"        role="tab" aria-selected="false" aria-label="Slide 2"></button>
-    </div>
-    <!-- Mobile-only trust pill — sits on image, hidden on desktop -->
-    <div class="hero-trust-pill-mobile" aria-hidden="true">
-      <span class="trust-pulse"></span>
-      CHIROPRACTIC TMJ THERAPY
-      <span class="trust-pulse"></span>
-    </div>
+  </div><!-- end hero-video-wrap -->
+
+  <!-- Desktop slideshow arrows — directly in #hero so z-index works -->
+  <button class="slide-arrow prev" id="slide-prev" aria-label="Previous image">&#8592;</button>
+  <button class="slide-arrow next" id="slide-next" aria-label="Next image">&#8594;</button>
+  <div class="slide-dots" role="tablist" aria-label="Slideshow navigation">
+    <button class="slide-dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
+    <button class="slide-dot"        role="tab" aria-selected="false" aria-label="Slide 2"></button>
   </div>
-  <div class="hero-overlay" aria-hidden="true"></div>
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-glow-red" aria-hidden="true"></div>
 
   <div class="hero-content">
     <div class="container">
