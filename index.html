@@ -272,8 +272,10 @@
     }
     .slide-dot.active { background: #fff; transform: scale(1.3); }
 
-    /* Dark overlay over video */
-    .hero-overlay {
+    /* Mobile-only trust pill — hidden on desktop */
+    .hero-trust-pill-mobile {
+      display: none;
+    }
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
         135deg,
@@ -913,16 +915,16 @@
       /* Image block sits below nav */
       .hero-video-wrap {
         position: relative;
-        height: 56vw;
-        min-height: 200px;
-        max-height: 320px;
+        height: 60vw;
+        min-height: 240px;
+        max-height: 360px;
         flex-shrink: 0;
       }
       .hero-slideshow { position: absolute; inset: 0; }
       .hero-slide picture source { display: none; }
       .hero-slide picture img { 
         display: block; 
-        object-position: center 30%;
+        object-position: center 20%;
       }
       /* Subtle gradient at very bottom of image only */
       .hero-overlay {
@@ -931,18 +933,28 @@
           rgba(26,35,40,0.7) 100%);
       }
       .hero-glow, .hero-glow-red { display: none; }
-      /* Trust pill — bottom left of image, always visible */
-      .hero-trust-pill {
-        position: absolute !important;
-        display: inline-flex !important;
-        bottom: 14px !important;
-        left: 14px !important;
+      /* Mobile trust pill — bottom left of image */
+      .hero-trust-pill-mobile {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        position: absolute;
+        bottom: 14px;
+        left: 14px;
         z-index: 3;
-        margin-bottom: 0;
-        white-space: nowrap;
-        font-size: 0.68rem;
+        background: rgba(168,216,232,0.12);
+        border: 1px solid rgba(168,216,232,0.25);
+        border-radius: 50px;
         padding: 7px 14px;
+        font-size: 0.68rem;
+        color: var(--ice);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        font-family: 'DM Sans', sans-serif;
+        white-space: nowrap;
       }
+      /* Hide desktop trust pill on mobile */
+      .hero-trust-pill { display: none !important; }
       /* Arrows on image */
       .slide-arrow { top: 40%; }
       .slide-dots { bottom: 14px; right: 14px; left: auto; transform: none; }
@@ -1064,6 +1076,12 @@
     <div class="slide-dots" role="tablist" aria-label="Slideshow navigation">
       <button class="slide-dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
       <button class="slide-dot"        role="tab" aria-selected="false" aria-label="Slide 2"></button>
+    </div>
+    <!-- Mobile-only trust pill — sits on image, hidden on desktop -->
+    <div class="hero-trust-pill-mobile" aria-hidden="true">
+      <span class="trust-pulse"></span>
+      CHIROPRACTIC TMJ THERAPY
+      <span class="trust-pulse"></span>
     </div>
   </div>
   <div class="hero-overlay" aria-hidden="true"></div>
