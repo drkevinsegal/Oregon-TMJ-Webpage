@@ -2198,16 +2198,17 @@
     carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
     carousel.addEventListener('mouseleave', startTimer);
 
-    // Touch swipe support
+    // Touch swipe support — listen on wrapper, not inner carousel
+    const wrapper = carousel.closest('.articles-carousel-wrap') || carousel.parentElement;
     let touchStartX = 0;
     let touchEndX = 0;
-    carousel.addEventListener('touchstart', e => {
+    wrapper.addEventListener('touchstart', e => {
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
-    carousel.addEventListener('touchend', e => {
+    wrapper.addEventListener('touchend', e => {
       touchEndX = e.changedTouches[0].screenX;
       const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 40) {
+      if (Math.abs(diff) > 30) {
         goTo(diff > 0 ? current + 1 : current - 1);
         resetTimer();
       }
