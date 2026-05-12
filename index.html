@@ -948,10 +948,17 @@
         width: 100%;
       }
       .hero-mobile-slide {
-        display: none;
-        position: relative;
+        position: absolute;
+        top: 0; left: 0; width: 100%;
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+        pointer-events: none;
       }
-      .hero-mobile-slide.active { display: block; }
+      .hero-mobile-slide.active {
+        opacity: 1;
+        position: relative;
+        pointer-events: auto;
+      }
       .hero-mobile-slide img {
         width: 100%;
         height: auto;
