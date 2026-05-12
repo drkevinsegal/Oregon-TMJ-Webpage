@@ -850,18 +850,35 @@
     .office-note strong { color: var(--ice); }
 
     /* ════════════════════════════════════════════════
-       ARTICLES SECTION
+       ARTICLES CAROUSEL
     ════════════════════════════════════════════════ */
     #articles { padding: 100px 0; background: var(--off-white); }
-    .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px; }
-    .article-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 28px; box-shadow: var(--shadow-sm); border: 1px solid rgba(168,216,232,0.2); display: flex; flex-direction: column; gap: 12px; transition: transform 0.25s ease, box-shadow 0.25s ease; text-decoration: none; color: inherit; }
+    .articles-carousel-wrap { position: relative; margin-top: 48px; overflow: hidden; }
+    .articles-carousel { display: flex; gap: 24px; transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); will-change: transform; }
+    .article-card {
+      background: #fff; border-radius: var(--radius-lg); padding: 28px 24px;
+      box-shadow: var(--shadow-sm); border: 1px solid rgba(168,216,232,0.2);
+      display: flex; flex-direction: column; gap: 10px;
+      text-decoration: none; color: inherit;
+      flex: 0 0 calc(33.333% - 16px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
     .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
     .article-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); }
-    .article-card h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--near-black); line-height: 1.45; }
-    .article-card p { font-size: 0.87rem; color: var(--mid-text); line-height: 1.65; flex-grow: 1; }
-    .article-read-time { display: inline-flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--light-text); background: var(--off-white); border-radius: 20px; padding: 3px 10px; font-weight: 500; margin-top: 4px; width: fit-content; }
+    .article-card h3 { font-family: 'Lora', serif; font-size: 1.02rem; font-weight: 500; color: var(--near-black); line-height: 1.45; }
+    .article-card p { font-size: 0.85rem; color: var(--mid-text); line-height: 1.65; flex-grow: 1; }
+    .article-read-time { font-size: 0.75rem; color: var(--light-text); background: var(--off-white); border-radius: 20px; padding: 3px 10px; font-weight: 500; width: fit-content; }
     .article-link-arrow { font-size: 0.85rem; color: var(--forest); font-weight: 600; }
-    @media (max-width: 900px) { .articles-grid { grid-template-columns: repeat(2, 1fr); } }
+    .carousel-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 28px; }
+    .carousel-btn { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: var(--slate); transition: background 0.2s, border-color 0.2s; }
+    .carousel-btn:hover { background: var(--near-black); color: #fff; border-color: var(--near-black); }
+    .carousel-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+    .carousel-dots { display: flex; gap: 6px; }
+    .carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(61,79,92,0.2); border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; padding: 0; }
+    .carousel-dot.active { background: var(--slate); transform: scale(1.3); }
+    @media (max-width: 900px) { .article-card { flex: 0 0 calc(50% - 12px); } }
+    @media (max-width: 640px) { .article-card { flex: 0 0 calc(50% - 8px); } .articles-carousel { gap: 16px; } }
+
 
     /* ════════════════════════════════════════════════
        FOOTER
@@ -1739,56 +1756,112 @@
       <h2 id="articles-heading" class="section-title">Learn More About TMJ</h2>
       <p class="section-sub" style="max-width:560px;margin:0 auto">Evidence-based articles to help you understand your jaw pain and what your options are.</p>
     </div>
-    <div class="articles-grid">
+    <div class="articles-carousel-wrap">
+      <div class="articles-carousel" id="articles-carousel">
 
-      <a href="why-does-my-jaw-click.html" class="article-card fade-up delay-1">
-        <span class="article-tag">TMJ Basics</span>
-        <h3>Why Does My Jaw Click? What TMJ Disorder Really Means</h3>
-        <p>Jaw clicking is one of the most common TMJ symptoms — but most people don't know what's actually causing it or when to get help.</p>
-        <span class="article-read-time">🕐 4 min read</span>
-        <span class="article-link-arrow">Read Article →</span>
-      </a>
+        <a href="tmj-headaches-jaw-pain.html" class="article-card">
+          <span class="article-tag">TMJ & Headaches</span>
+          <h3>TMJ and Headaches — What's the Connection?</h3>
+          <p>If you have frequent headaches alongside jaw pain, TMJ may be the cause most doctors are missing.</p>
+          <span class="article-read-time">🕐 4 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
 
-      <a href="neck-pain-jaw-pain-tmj.html" class="article-card fade-up delay-2">
-        <span class="article-tag">Whole-Body Connection</span>
-        <h3>Your Neck Is Causing Your Jaw Pain — The TMJ-Cervical Spine Connection</h3>
-        <p>Most TMJ treatments focus only on the jaw — but research shows the neck and posture play a major role that dentists rarely address.</p>
-        <span class="article-read-time">🕐 5 min read</span>
-        <span class="article-link-arrow">Read Article →</span>
-      </a>
+        <a href="tmj-ear-pain.html" class="article-card">
+          <span class="article-tag">TMJ Symptoms</span>
+          <h3>TMJ and Ear Pain — Why Your Ears Hurt When It's Really Your Jaw</h3>
+          <p>Ear pressure, ringing, and pain are surprisingly common TMJ symptoms that often get misdiagnosed.</p>
+          <span class="article-read-time">🕐 4 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
 
-      <a href="tmj-treatment-milwaukie-lake-oswego.html" class="article-card fade-up delay-3">
-        <span class="article-tag">Local Resources</span>
-        <h3>TMJ Treatment in Milwaukie and Southeast Portland — A Convenient Option Close to Home</h3>
-        <p>If you're dealing with jaw pain in the south Portland metro, here's what your local treatment options actually look like.</p>
-        <span class="article-read-time">🕐 4 min read</span>
-        <span class="article-link-arrow">Read Article →</span>
-      </a>
+        <a href="why-does-my-jaw-click.html" class="article-card">
+          <span class="article-tag">TMJ Basics</span>
+          <h3>Why Does My Jaw Click? What TMJ Disorder Really Means</h3>
+          <p>Jaw clicking is one of the most common TMJ symptoms — but most people don't know what's actually causing it or when to get help.</p>
+          <span class="article-read-time">🕐 4 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
 
-      <a href="tmj-treatment-failed-what-next.html" class="article-card fade-up delay-1">
-        <span class="article-tag">Treatment Options</span>
-        <h3>Night Guards, Botox, and Injections Didn't Help My TMJ — What's Next?</h3>
-        <p>If you've tried the standard dental treatments and still have jaw pain, you're not alone — and there are real options left to explore.</p>
-        <span class="article-read-time">🕐 5 min read</span>
-        <span class="article-link-arrow">Read Article →</span>
-      </a>
+        <a href="tmj-treatment-failed-what-next.html" class="article-card">
+          <span class="article-tag">Treatment Options</span>
+          <h3>Night Guards, Botox, and Injections Didn't Help My TMJ — What's Next?</h3>
+          <p>If you've tried the standard dental treatments and still have jaw pain, you're not alone — and there are real options left to explore.</p>
+          <span class="article-read-time">🕐 5 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
 
-      <a href="tmj-insurance-coverage-oregon.html" class="article-card fade-up delay-2">
-        <span class="article-tag">Insurance & Cost</span>
-        <h3>Is TMJ Treatment Covered by Insurance in Oregon?</h3>
-        <p>Insurance coverage for TMJ is confusing — and the answer depends on how your care is classified. Here's what to know before your first visit.</p>
-        <span class="article-read-time">🕐 4 min read</span>
-        <span class="article-link-arrow">Read Article →</span>
-      </a>
+        <a href="neck-pain-jaw-pain-tmj.html" class="article-card">
+          <span class="article-tag">Whole-Body Connection</span>
+          <h3>Your Neck Is Causing Your Jaw Pain — The TMJ-Cervical Spine Connection</h3>
+          <p>Most TMJ treatments focus only on the jaw — but research shows the neck and posture play a major role that dentists rarely address.</p>
+          <span class="article-read-time">🕐 5 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
 
-      <a href="therapeutic-laser-tmj.html" class="article-card fade-up delay-3">
-        <span class="article-tag">Treatment Options</span>
-        <h3>Therapeutic Laser for TMJ Pain — What the Evidence Says</h3>
-        <p>Laser therapy is a non-invasive treatment with a growing body of evidence for TMJ pain. Here's an honest look at what the research shows.</p>
-        <span class="article-read-time">🕐 5 min read</span>
-        <span class="article-link-arrow">Read Article →</span>
-      </a>
+        <a href="tmj-dizziness.html" class="article-card">
+          <span class="article-tag">TMJ Symptoms</span>
+          <h3>Can TMJ Cause Dizziness? What You Need to Know</h3>
+          <p>Dizziness and vertigo alongside jaw pain may not be a coincidence — here's what the connection is and how chiropractic care can help.</p>
+          <span class="article-read-time">🕐 4 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
 
+        <a href="bruxism-tmj.html" class="article-card">
+          <span class="article-tag">Bruxism</span>
+          <h3>Teeth Grinding and TMJ — Breaking the Cycle of Bruxism</h3>
+          <p>Grinding and clenching are among the most common drivers of TMJ disorder — and a night guard alone rarely breaks the cycle.</p>
+          <span class="article-read-time">🕐 5 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+        <a href="tmj-sleep.html" class="article-card">
+          <span class="article-tag">Sleep & TMJ</span>
+          <h3>TMJ and Sleep — How Jaw Problems Affect Your Rest</h3>
+          <p>Poor sleep and TMJ disorder feed into each other. Here's how to break that cycle with a whole-body approach.</p>
+          <span class="article-read-time">🕐 4 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+        <a href="first-tmj-chiropractic-visit.html" class="article-card">
+          <span class="article-tag">Getting Started</span>
+          <h3>What to Expect at Your First TMJ Chiropractic Visit in Oregon</h3>
+          <p>Not sure what happens at a chiropractic TMJ appointment? Here's exactly what to expect so you can come in with confidence.</p>
+          <span class="article-read-time">🕐 4 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+        <a href="therapeutic-laser-tmj.html" class="article-card">
+          <span class="article-tag">Treatment Options</span>
+          <h3>Class IV Therapeutic Laser for TMJ Pain — How It Works and Why It Helps</h3>
+          <p>Laser therapy is a non-invasive treatment with a growing body of evidence for TMJ pain. Here's an honest look at what the research shows.</p>
+          <span class="article-read-time">🕐 5 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+        <a href="tmj-insurance-coverage-oregon.html" class="article-card">
+          <span class="article-tag">Insurance & Cost</span>
+          <h3>Is TMJ Treatment Covered by Insurance in Oregon?</h3>
+          <p>Insurance coverage for TMJ is confusing — and the answer depends on how your care is classified. Here's what to know before your first visit.</p>
+          <span class="article-read-time">🕐 4 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+        <a href="tmj-treatment-milwaukie-lake-oswego.html" class="article-card">
+          <span class="article-tag">Local Resources</span>
+          <h3>TMJ Treatment in Milwaukie and Southeast Portland — A Convenient Option Close to Home</h3>
+          <p>If you're dealing with jaw pain in the Portland metro area, here's what your local treatment options actually look like.</p>
+          <span class="article-read-time">🕐 4 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+      </div>
+    </div>
+    <!-- Carousel nav -->
+    <div class="carousel-nav" aria-label="Article carousel navigation">
+      <button class="carousel-btn" id="carousel-prev" aria-label="Previous articles">&#8592;</button>
+      <div class="carousel-dots" id="carousel-dots" role="tablist"></div>
+      <button class="carousel-btn" id="carousel-next" aria-label="Next articles">&#8594;</button>
     </div>
   </div>
 </section>
@@ -2067,7 +2140,55 @@
   }, { passive: true });
   if (window.scrollY > 40) nav.classList.add('scrolled');
 
-  // ── MOBILE HERO SLIDESHOW ───────────────────────
+  // ── ARTICLES CAROUSEL ───────────────────────────
+  (function() {
+    const carousel = document.getElementById('articles-carousel');
+    const dotsWrap = document.getElementById('carousel-dots');
+    const prevBtn  = document.getElementById('carousel-prev');
+    const nextBtn  = document.getElementById('carousel-next');
+    if (!carousel) return;
+
+    const cards = carousel.querySelectorAll('.article-card');
+    let current = 0;
+
+    function visibleCount() {
+      if (window.innerWidth <= 640) return 2;
+      if (window.innerWidth <= 900) return 2;
+      return 3;
+    }
+
+    function pageCount() {
+      return Math.ceil(cards.length / visibleCount());
+    }
+
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < pageCount(); i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === current ? ' active' : '');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Page ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+      }
+    }
+
+    function goTo(page) {
+      current = Math.max(0, Math.min(page, pageCount() - 1));
+      const cardWidth = cards[0].offsetWidth + 24;
+      carousel.style.transform = `translateX(-${current * visibleCount() * cardWidth}px)`;
+      dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current >= pageCount() - 1;
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    buildDots();
+    goTo(0);
+    window.addEventListener('resize', () => { buildDots(); goTo(0); });
+  })();
   (function() {
     const mobileImages = document.getElementById('hero-mobile-images');
     if (!mobileImages) return;
