@@ -2150,11 +2150,11 @@
 
     const cards = carousel.querySelectorAll('.article-card');
     let current = 0;
+    let autoTimer;
+    const AUTO_INTERVAL = 5000;
 
     function visibleCount() {
-      if (window.innerWidth <= 640) return 2;
-      if (window.innerWidth <= 900) return 2;
-      return 3;
+      return window.innerWidth <= 900 ? 2 : 3;
     }
 
     function pageCount() {
@@ -2168,25 +2168,54 @@
         dot.className = 'carousel-dot' + (i === current ? ' active' : '');
         dot.setAttribute('role', 'tab');
         dot.setAttribute('aria-label', 'Page ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i));
+        dot.addEventListener('click', () => { goTo(i); resetTimer(); });
         dotsWrap.appendChild(dot);
       }
     }
 
     function goTo(page) {
-      current = Math.max(0, Math.min(page, pageCount() - 1));
-      const cardWidth = cards[0].offsetWidth + 24;
+      current = ((page % pageCount()) + pageCount()) % pageCount();
+      const cardWidth = cards[0].offsetWidth + (window.innerWidth <= 640 ? 16 : 24);
       carousel.style.transform = `translateX(-${current * visibleCount() * cardWidth}px)`;
       dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current >= pageCount() - 1;
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
     }
 
-    prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
+    function startTimer() {
+      autoTimer = setInterval(() => goTo(current + 1), AUTO_INTERVAL);
+    }
+
+    function resetTimer() {
+      clearInterval(autoTimer);
+      startTimer();
+    }
+
+    prevBtn.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+    nextBtn.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+
+    // Pause auto-advance on hover (desktop)
+    carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    carousel.addEventListener('mouseleave', startTimer);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    carousel.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    carousel.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        goTo(diff > 0 ? current + 1 : current - 1);
+        resetTimer();
+      }
+    }, { passive: true });
 
     buildDots();
     goTo(0);
+    startTimer();
     window.addEventListener('resize', () => { buildDots(); goTo(0); });
   })();
   (function() {
