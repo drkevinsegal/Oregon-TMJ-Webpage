@@ -2364,27 +2364,25 @@
     btn.disabled = true;
 
     /*
-      ── FORMSPREE INTEGRATION ─────────────────────
-      To activate:
-      1. Create account at formspree.io
-      2. Create a new form — copy your endpoint URL
-      3. Replace the fetch URL below with your endpoint
-      4. Remove the setTimeout simulation
+      ── WEB3FORMS — ACTIVE ────────────────────────
+      Access Key: 8a996306-e86b-4aaa-89f8-34823b2d1862
+      Email: drsegal@bischiropractic.com
       ─────────────────────────────────────────────
-
-      fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      }).then(res => {
-        if (res.ok) { showSuccess(); }
-        else { btn.textContent = 'Try Again'; btn.disabled = false; }
-      }).catch(() => {
-        btn.textContent = 'Try Again'; btn.disabled = false;
-      });
     */
+    const formData = new FormData(form);
+    formData.append('access_key', '8a996306-e86b-4aaa-89f8-34823b2d1862');
+    formData.append('subject', 'New Patient Request — Oregon TMJ');
+    formData.append('from_name', 'Oregon TMJ Website');
 
-    setTimeout(showSuccess, 900);
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    }).then(res => res.json()).then(data => {
+      if (data.success) { showSuccess(); }
+      else { btn.textContent = 'Try Again'; btn.disabled = false; }
+    }).catch(() => {
+      btn.textContent = 'Try Again'; btn.disabled = false;
+    });
   });
 
   function showSuccess() {
