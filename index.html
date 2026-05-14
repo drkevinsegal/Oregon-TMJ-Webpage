@@ -1894,7 +1894,7 @@
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="phone">Phone Number <span aria-label="required">*</span></label>
+                <label for="phone">Mobile Phone Number <span aria-label="required">*</span></label>
                 <input type="tel" id="phone" name="phone" placeholder="(503) 788-3800"
                        required aria-required="true" autocomplete="tel" />
               </div>
@@ -1904,40 +1904,50 @@
                        required aria-required="true" autocomplete="email" />
               </div>
             </div>
+            <div class="form-group">
+              <label for="contact-method">Preferred Method of Contact <span aria-label="required">*</span></label>
+              <select id="contact-method" name="preferred_contact" required aria-required="true">
+                <option value="">Select…</option>
+                <option>Phone call</option>
+                <option>Text message</option>
+                <option>Email</option>
+              </select>
+            </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="pref-day">Preferred Day <span aria-label="required">*</span></label>
-                <select id="pref-day" name="preferred_day" required aria-required="true">
+                <label for="pref-day">Preferred Appointment Day</label>
+                <select id="pref-day" name="preferred_day">
                   <option value="">Select…</option>
                   <option>Monday</option><option>Wednesday</option>
                   <option>Thursday</option><option>No preference</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="pref-time">Preferred Time <span aria-label="required">*</span></label>
-                <select id="pref-time" name="preferred_time" required aria-required="true">
+                <label for="pref-time">Preferred Time</label>
+                <select id="pref-time" name="preferred_time">
                   <option value="">Select…</option>
                   <option>Morning</option><option>Afternoon</option><option>No preference</option>
                 </select>
               </div>
             </div>
-            <div class="form-group">
-              <label for="reason">Main Reason for Visit <span aria-label="required">*</span></label>
-              <select id="reason" name="reason" required aria-required="true">
-                <option value="">Select your main concern…</option>
-                <option>Jaw pain or soreness</option>
-                <option>Clicking or popping jaw</option>
-                <option>Jaw locking</option>
-                <option>Headaches related to jaw</option>
-                <option>Ear pressure or fullness</option>
-                <option>Teeth grinding (bruxism)</option>
-                <option>Neck and jaw pain</option>
-                <option>TMJ after car accident</option>
-                <option>Difficulty chewing</option>
-                <option>Facial tension</option>
-                <option>Other / Not sure</option>
-              </select>
-            </div>
+            <fieldset class="form-group" style="border:none;padding:0">
+              <legend style="font-size:0.78rem;font-weight:600;color:var(--near-black);margin-bottom:7px;letter-spacing:0.02em">
+                Main Reason for Visit <span style="font-weight:400;color:var(--mid-text)">(select all that apply)</span> <span aria-label="required">*</span>
+              </legend>
+              <div class="check-group" role="group">
+                <label class="check-label"><input type="checkbox" name="reason" value="Jaw pain or soreness"> Jaw pain or soreness</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Clicking or popping jaw"> Clicking or popping jaw</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Jaw locking"> Jaw locking</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Headaches related to jaw"> Headaches related to jaw</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Ear pressure or fullness"> Ear pressure or fullness</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Teeth grinding (bruxism)"> Teeth grinding (bruxism)</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Neck and jaw pain"> Neck and jaw pain</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="TMJD after car accident"> TMJD after car accident</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Difficulty chewing"> Difficulty chewing</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Facial tension"> Facial tension</label>
+                <label class="check-label"><input type="checkbox" name="reason" value="Other / Not sure"> Other / Not sure</label>
+              </div>
+            </fieldset>
             <div class="form-group">
               <label for="duration">How long have you had symptoms?</label>
               <select id="duration" name="duration">
@@ -1947,26 +1957,13 @@
                 <option>Several years</option>
               </select>
             </div>
-            <fieldset class="form-group" style="border:none;padding:0">
-              <legend style="font-size:0.78rem;font-weight:600;color:var(--near-black);margin-bottom:7px;letter-spacing:0.02em">
-                Have you tried any of the following?
-              </legend>
-              <div class="check-group" role="group" aria-labelledby="tried-legend">
-                <label class="check-label"><input type="checkbox" name="tried" value="Night guard"> Night guard</label>
-                <label class="check-label"><input type="checkbox" name="tried" value="Dental treatment"> Dental treatment</label>
-                <label class="check-label"><input type="checkbox" name="tried" value="Botox"> Botox</label>
-                <label class="check-label"><input type="checkbox" name="tried" value="Medication"> Medication</label>
-                <label class="check-label"><input type="checkbox" name="tried" value="Physical therapy"> Physical therapy</label>
-                <label class="check-label"><input type="checkbox" name="tried" value="Nothing yet"> Nothing yet</label>
-              </div>
-            </fieldset>
             <div class="form-group">
-              <label for="notes">Anything else you'd like us to know?</label>
+              <label for="notes">Other questions or anything else you would like us to know?</label>
               <textarea id="notes" name="notes" placeholder="Optional — any details that might help us prepare for your visit."></textarea>
             </div>
             <div id="form-error" class="sr-only" role="alert" aria-live="polite"></div>
             <button type="submit" class="form-submit" id="submit-btn">
-              Send Appointment Request <span aria-hidden="true">→</span>
+              Send Request <span aria-hidden="true">→</span>
             </button>
             <p class="form-note">By submitting this form, you consent to being contacted by Oregon TMJ regarding your inquiry. For medical emergencies call <strong>911</strong>.</p>
           </div>
@@ -2025,18 +2022,6 @@
           <div><h4>Email</h4><p><a href="mailto:drsegal@oregontmj.com">drsegal@oregontmj.com</a></p></div>
         </div>
         </address>
-        <div class="area-tags-wrap">
-          <h4>Serving Patients From:</h4>
-          <div class="area-tags">
-            <span class="area-tag">Portland</span>
-            <span class="area-tag">Milwaukie</span>
-            <span class="area-tag">Clackamas</span>
-            <span class="area-tag">West Linn</span>
-            <span class="area-tag">Happy Valley</span>
-            <span class="area-tag">Oregon City</span>
-            <span class="area-tag">Lake Oswego</span>
-          </div>
-        </div>
       </div>
       <div class="fade-up delay-2">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
@@ -2052,7 +2037,7 @@
           <span>Embed Google Map here<br/>(Milwaukie, Oregon)</span>
         </div>
         <div class="office-note">
-          <strong>Easy to Find</strong> — Located in Milwaukie with convenient access from Highway 224 and I-205. Serving the greater Portland area.
+          <strong>Easy to Find</strong> — Located in Milwaukie near SE Portland with convenient access from Highway 224 and I-205 and easy bus access. Serving patients from Portland, Milwaukie, Lake Oswego, Oregon City, Clackamas, Happy Valley, and West Linn.
         </div>
       </div>
     </div>
