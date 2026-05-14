@@ -2326,15 +2326,13 @@
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const name = document.getElementById('full-name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const reason = document.getElementById('reason').value;
-    const day = document.getElementById('pref-day').value;
-    const time = document.getElementById('pref-time').value;
+    const name    = document.getElementById('full-name').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const contact = document.getElementById('contact-method').value;
 
-    if (!name || !phone || !email || !reason || !day || !time) {
-      errorDiv.textContent = 'Please fill in all required fields before submitting.';
+    if (!name || !phone || !email || !contact) {
+      errorDiv.textContent = 'Please fill in all required fields (name, mobile phone, email, and preferred contact method).';
       errorDiv.classList.remove('sr-only');
       errorDiv.style.color = '#c42828';
       errorDiv.style.fontSize = '0.85rem';
@@ -2342,16 +2340,10 @@
       errorDiv.style.background = '#fff3f3';
       errorDiv.style.borderRadius = '8px';
       errorDiv.style.marginBottom = '12px';
-      // Focus the first empty required field
-      const firstEmpty = [
-        document.getElementById('full-name'),
-        document.getElementById('phone'),
-        document.getElementById('email'),
-        document.getElementById('pref-day'),
-        document.getElementById('pref-time'),
-        document.getElementById('reason')
-      ].find(field => !field.value.trim());
-      if (firstEmpty) firstEmpty.focus();
+      if (!name) document.getElementById('full-name').focus();
+      else if (!phone) document.getElementById('phone').focus();
+      else if (!email) document.getElementById('email').focus();
+      else document.getElementById('contact-method').focus();
       return;
     }
 
