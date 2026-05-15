@@ -101,6 +101,76 @@
         "name": "Oregon TMJ",
         "description": "Non-surgical chiropractic TMJD care in Milwaukie and Portland, Oregon",
         "publisher": {"@id": "https://oregontmj.com/#business"}
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://oregontmj.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is TMJ disorder, and is it serious?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "TMJ disorder (TMJD or TMD) refers to problems with the temporomandibular joint — the hinge connecting your jaw to your skull. It can involve the joint itself, surrounding muscles, or both. Symptoms range from mild to quite disruptive. While rarely dangerous, it can significantly affect quality of life. Most cases respond well to conservative, non-surgical treatment."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a chiropractor really help with jaw pain?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Chiropractors trained in TMJ treatment can address dysfunction in the jaw joint, neck, and surrounding muscles — all of which frequently contribute to TMJ disorder. Research supports manual therapy and exercise for reducing jaw pain and improving function. Our approach is conservative, hands-on, and focused on how your jaw and neck work together."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is chiropractic TMJ care different from seeing a dentist for TMJ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dentists typically focus on teeth and bite — valuable if TMJ disorder is bite-related. However, many cases involve joint mechanics, muscles, or the cervical spine. A chiropractic approach addresses these elements directly, which is why patients often see improvement after dental treatments haven't provided lasting relief. In some cases, a combined approach may be most effective."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will chiropractic TMJ treatment be painful?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Chiropractic TMJ care is gentle and conservative. Treatment is performed within your comfort level at all times. Some mild soreness after the first few appointments is normal — similar to how muscles feel after activity — but treatment itself should not be painful."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many visits will I need for TMJ treatment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This depends on the severity of your condition and how your body responds. A personalized plan is built after the initial evaluation. Some patients feel significant improvement within a few visits; others with more complex conditions may need a longer course of care. Progress is tracked and the plan is adjusted as treatment continues."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does insurance cover chiropractic TMJ treatment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oregon TMJ works with many PPO insurance plans and PIP (personal injury protection) coverage for auto accident patients. Coverage varies by plan. Contact the clinic before your first appointment to discuss your specific benefits. Transparent self-pay pricing is also available for patients without insurance coverage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can TMJ disorder be caused by a car accident?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Whiplash and other cervical injuries from car accidents can contribute to or trigger TMJ disorder — the jaw and neck are closely connected. If jaw pain started after a collision, it is worth having both evaluated. PIP (personal injury protection) auto insurance coverage may apply to chiropractic TMJ treatment following a motor vehicle accident."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What areas does Oregon TMJ serve?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oregon TMJ is located at 6501 SE King Road in Milwaukie, Oregon and sees patients from across the greater Portland area — including Portland, Clackamas, West Linn, Happy Valley, Oregon City, and Lake Oswego. The office is easily accessible from Highway 224 and I-205."
+            }
+          }
+        ]
       }
     ]
   }
@@ -202,6 +272,42 @@
       white-space: nowrap;
       border: 0;
     }
+
+    /* ── SOCIAL MEDIA LINKS ──────────────────────── */
+    .footer-social {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-top: 16px;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--ice);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .footer-social a:hover {
+      background: rgba(168,216,232,0.18);
+      border-color: rgba(168,216,232,0.4);
+    }
+    .footer-social a svg { width: 16px; height: 16px; }
+    .footer-google-reviews {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s ease;
+    }
+    .footer-google-reviews:hover { color: var(--ice); }
+    .footer-google-reviews svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     /* Reduced motion support for users with vestibular disorders */
     @media (prefers-reduced-motion: reduce) {
@@ -2156,6 +2262,34 @@
           <span class="footer-logo-fallback" style="display:none" aria-hidden="true">OREGON <span>TMJ</span></span>
         </div>
         <p>Non-surgical, chiropractic-focused TMJ care for patients in Milwaukie and the greater Portland area.</p>
+
+        <!-- Social Media Links -->
+        <!-- UPDATE: Replace # hrefs with Oregon TMJ social profile URLs when ready -->
+        <nav class="footer-social" aria-label="Oregon TMJ social media">
+          <a href="https://www.facebook.com/Back-In-Shape-Chiropractic-Milwaukie-Oregon-132540496793398/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Visit Oregon TMJ on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.yelp.com/biz/back-in-shape-chiropractic-milwaukie"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Read Oregon TMJ reviews on Yelp">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.27 7.94c-.32-.89-1.62-5.4-1.69-5.64a.79.79 0 0 0-1.41-.16C8.5 3.04 7 6.57 6.87 6.94a.79.79 0 0 0 .72 1.07l4.05-.07a.79.79 0 0 0 .63-1zm-5.5 5.17-3.87 1.32a.79.79 0 0 0-.27 1.35c.2.18 2.74 2.07 3.02 2.25a.79.79 0 0 0 1.16-.63l.26-3.37a.79.79 0 0 0-.3-.92zm1.03-1.97a.79.79 0 0 0-.52-.96L3.4 8.96a.79.79 0 0 0-.97.97c.06.22 1.1 3.54 1.24 3.87a.79.79 0 0 0 1.11.38l2.74-1.72a.79.79 0 0 0 .28-.32zm9.2 4.77c-.24-.29-2.51-2.37-2.75-2.56a.79.79 0 0 0-1.21.4l-1.13 3.19a.79.79 0 0 0 .76 1.05c.27 0 3.26-.28 3.6-.35a.79.79 0 0 0 .73-1.73zm.43-5.87c-.33-.12-3.63-1.1-3.97-1.16a.79.79 0 0 0-.88.96l.96 3.96a.79.79 0 0 0 1.31.4c.23-.22 2.73-2.87 2.9-3.15a.79.79 0 0 0-.32-1.01z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCDEDqCwBMcF28APwNyWbv3Q"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Watch Oregon TMJ videos on YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58a2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+          </a>
+        </nav>
+
+        <!-- Google Reviews Link -->
+        <!-- UPDATE: Replace # with your Google Business Profile review URL after Step 10 is complete -->
+        <a href="#" class="footer-google-reviews" aria-label="Read our Google reviews (link active after Google Business Profile setup)">
+          <svg viewBox="0 0 24 24" fill="#FFC107" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          Read Our Google Reviews
+        </a>
+
       </div>
       <nav class="footer-col" aria-label="Footer navigation">
         <p style="font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:16px">Quick Links</p>
@@ -2186,7 +2320,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Oregon TMJ · Milwaukie, Oregon · All rights reserved.</p>
+      <p>© 2026 Oregon TMJ · Milwaukie, Oregon · All rights reserved.</p>
       <p>Privacy Policy · Non-Discrimination Policy</p>
     </div>
     <p class="footer-legal"><strong style="color:rgba(255,255,255,0.45);font-weight:600">Disclaimer:</strong> The information on this website is for educational purposes only and does not constitute medical advice. TMJ treatment outcomes vary by individual. Oregon TMJ does not guarantee specific results. Coverage varies by insurance plan — verify benefits with your provider. If you are experiencing a medical emergency, call 911 or go to your nearest emergency room.</p>
