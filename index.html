@@ -400,17 +400,18 @@
       letter-spacing: 0.08em; color: #fff;
     }
     .nav-logo-fallback span { color: var(--ice); }
-    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links { display: flex; gap: 18px; list-style: none; }
     .nav-links a { font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.75); letter-spacing: 0.03em; transition: color 0.2s; white-space: nowrap; }
     .nav-links a:hover { color: var(--ice); }
-    .nav-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+    .nav-right { display: flex; align-items: center; gap: 8px; margin-left: auto; }
     .nav-phone { display: none; }
     .nav-call-pill { display: inline-flex; align-items: center; gap: 6px; background: #3a7d44; color: #fff; padding: 0 16px; height: 33px; border-radius: 50px; font-size: 0.78rem; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.2s; box-sizing: border-box; }
     .nav-call-pill:hover { background: #2d6235; }
-    .nav-text-pill { display: none; }
+    .nav-text-pill { display: inline-flex; align-items: center; gap: 6px; background: #A8D8E8; border: 1px solid #A8D8E8; color: #1A2328; padding: 0 16px; height: 33px; border-radius: 50px; font-size: 0.78rem; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.2s; box-sizing: border-box; }
+    .nav-text-pill:hover { background: #c2e8f4; }
 
-    .nav-call-pill-sm { display: none; align-items: center; gap: 5px; background: #3a7d44; color: #fff; padding: 8px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
-    .nav-text-pill-sm { display: none; align-items: center; gap: 5px; background: #A8D8E8; border: 1px solid #A8D8E8; color: #1A2328; padding: 8px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .nav-call-pill-sm { display: none; }
+    .nav-text-pill-sm { display: none; }
     .nav-book-text-full { display: inline; }
     .nav-book-text-short { display: none; }
     .nav-book { padding: 0 16px !important; height: 33px !important; font-size: 0.78rem !important; font-weight: 600; box-shadow: none !important; transform: none !important; line-height: 1; box-sizing: border-box !important; }
@@ -1140,24 +1141,29 @@
       .about-image-wrap { max-width: 360px; }
       .anatomy-pair { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .nav-links, .nav-phone, .nav-call-pill, .nav-text-pill { display: none; }
+      .nav-links, .nav-phone { display: none; }
       .nav-right .btn { display: none; }
-      .nav-call-pill-sm { display: inline-flex; }
-      .nav-text-pill-sm { display: inline-flex; }
-      .nav-book { display: inline-flex !important; font-size: 0.78rem !important; padding: 0 16px !important; height: 33px !important; box-shadow: none !important; }
+      .nav-call-pill { display: inline-flex; height: 33px; padding: 0 12px; font-size: 0.75rem; }
+      .nav-text-pill { display: inline-flex; height: 33px; padding: 0 12px; font-size: 0.75rem; }
+      .call-text-full { display: none; }
+      .call-text-short { display: inline !important; }
+      .nav-call-pill-sm { display: none; }
+      .nav-text-pill-sm { display: none; }
+      .nav-book { display: inline-flex !important; font-size: 0.75rem !important; padding: 0 12px !important; height: 33px !important; box-shadow: none !important; }
       .nav-book-text-full { display: inline; }
       .nav-book-text-short { display: none; }
       .nav-inner { height: 68px; }
       .nav-logo img { height: 50px; }
-      /* Trust pill — hide desktop version, show mobile version */
       .hero-trust-pill { display: none; }
       .hero-trust-pill-mobile { display: inline-flex; }
     }
     @media (max-width: 640px) {
-      .nav-links, .nav-phone, .nav-call-pill, .nav-text-pill, .nav-book { display: none !important; }
+      .nav-links, .nav-phone, .nav-book { display: none !important; }
       .nav-right .btn { display: none; }
-      .nav-call-pill-sm { display: inline-flex; }
-      .nav-text-pill-sm { display: inline-flex; }
+      .nav-call-pill { display: inline-flex !important; height: 33px; padding: 0 10px; font-size: 0.72rem; }
+      .nav-text-pill { display: inline-flex !important; height: 33px; padding: 0 10px; font-size: 0.72rem; }
+      .call-text-full { display: none; }
+      .call-text-short { display: inline !important; }
       .nav-inner { height: 68px; }
       .nav-logo img { height: 50px; }
       .nav-book-text-full { display: none; }
@@ -1289,16 +1295,11 @@
     <div class="nav-right">
       <a href="tel:5037883800" class="nav-call-pill" aria-label="Call Oregon TMJ at 503-788-3800">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l1.84-1.84a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
-        Call (503) 788-3800
+        <span class="call-text-full">Call (503) 788-3800</span><span class="call-text-short" style="display:none">Call</span>
       </a>
       <a href="sms:5037883800" class="nav-text-pill" aria-label="Text Oregon TMJ at 503-788-3800">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Text Us
-      </a>
-      <!-- Mobile/tablet call pill -->
-      <a href="tel:5037883800" class="nav-call-pill-sm" aria-label="Call Oregon TMJ at 503-788-3800">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l1.84-1.84a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
-        Call
       </a>
       <!-- Mobile/tablet text pill -->
       <a href="sms:5037883800" class="nav-text-pill-sm" aria-label="Text Oregon TMJ at 503-788-3800">
