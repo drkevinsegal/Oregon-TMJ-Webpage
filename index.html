@@ -1141,13 +1141,10 @@
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
     @media (max-width: 640px) {
-      .nav-links, .nav-phone, .nav-call-pill, .nav-text-pill { display: none; }
+      .nav-links, .nav-phone, .nav-call-pill, .nav-text-pill, .nav-book { display: none; }
       .nav-right .btn { display: none; }
       .nav-call-pill-sm { display: inline-flex; }
       .nav-text-pill-sm { display: inline-flex; }
-      .nav-book { display: inline-flex; font-size: 0.78rem; padding: 10px 18px; }
-      .nav-book-text-full { display: none; }
-      .nav-book-text-short { display: inline; }
       .nav-inner { height: 68px; }
       .nav-logo img { height: 50px; }
       .form-row { grid-template-columns: 1fr; }
@@ -1295,7 +1292,7 @@
       </a>
     </div>
     <a href="https://backinshapechiro.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-book"
-       aria-label="Book appointment online via Jane App (opens in new window)"><span class="nav-book-text-full">Book Appointment</span><span class="nav-book-text-short">Book Now</span></a>
+       aria-label="Book appointment online via Jane App (opens in new window)"><span class="nav-book-text-full">Book Appointment</span><span class="nav-book-text-short">Book</span></a>
     <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
       <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
@@ -1304,13 +1301,13 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation menu">
+  <a href="#office">Contact / Location</a>
   <a href="#approach">Our Approach</a>
   <a href="#expect">What to Expect</a>
   <a href="#insurance">Insurance</a>
   <a href="#about">About</a>
   <a href="#faq">FAQ</a>
   <a href="#articles">Resources</a>
-  <a href="#office">Contact</a>
   <a href="sms:5037883800" class="btn btn-outline-white"><span aria-hidden="true">💬</span> Text Us</a>
   <a href="https://backinshapechiro.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Appointment</a>
 </div>
