@@ -1140,12 +1140,18 @@
       .about-image-wrap { max-width: 360px; }
       .anatomy-pair { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .nav-links, .nav-phone, .nav-call-pill, .nav-text-pill, .nav-book { display: none; }
+      .nav-links, .nav-phone, .nav-call-pill, .nav-text-pill { display: none; }
       .nav-right .btn { display: none; }
       .nav-call-pill-sm { display: inline-flex; }
       .nav-text-pill-sm { display: inline-flex; }
+      .nav-book { display: inline-flex !important; font-size: 0.78rem !important; padding: 0 16px !important; height: 33px !important; box-shadow: none !important; }
+      .nav-book-text-full { display: none; }
+      .nav-book-text-short { display: inline; }
       .nav-inner { height: 68px; }
       .nav-logo img { height: 50px; }
+      /* Trust pill — hide desktop version, show mobile version */
+      .hero-trust-pill { display: none; }
+      .hero-trust-pill-mobile { display: inline-flex; }
     }
     @media (max-width: 640px) {
       .nav-links, .nav-phone, .nav-call-pill, .nav-text-pill, .nav-book { display: none; }
@@ -1154,6 +1160,8 @@
       .nav-text-pill-sm { display: inline-flex; }
       .nav-inner { height: 68px; }
       .nav-logo img { height: 50px; }
+      .nav-book-text-full { display: none; }
+      .nav-book-text-short { display: none; }
       .form-row { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .cta-contacts { flex-direction: column; align-items: center; gap: 16px; }
