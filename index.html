@@ -2628,13 +2628,14 @@
     /*
       ── WEB3FORMS — ACTIVE ────────────────────────
       Access Key: 8a996306-e86b-4aaa-89f8-34823b2d1862
-      Email: drsegal@bischiropractic.com
+      Email: officeteam@bischiropractic.com
       ─────────────────────────────────────────────
     */
     const formData = new FormData(form);
     formData.append('access_key', '8a996306-e86b-4aaa-89f8-34823b2d1862');
     formData.append('subject', 'New Patient Request — Oregon TMJ');
     formData.append('from_name', 'Oregon TMJ Website');
+    formData.append('replyto', 'officeteam@bischiropractic.com');
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
