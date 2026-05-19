@@ -1343,6 +1343,9 @@
       <img src="Assets/images/oregon-tmj-laser-hero-desktop.webp" alt="Laser TMJ therapy treatment">
     </div>
     <div class="hero-mobile-slide">
+      <img src="Assets/images/dr-segal-neck-adjustment-tmj-milwaukie.webp" alt="Dr. Kevin Segal performing neck adjustment for TMJ">
+    </div>
+    <div class="hero-mobile-slide">
       <img src="Assets/images/tmj-jaw-measurement-hero-1920x1080.webp" alt="TMJ jaw measurement assessment">
     </div>
     <div class="hero-mobile-slide">
@@ -1404,7 +1407,13 @@
           <img src="Assets/images/oregon-tmj-laser-hero-desktop.webp" alt="Laser TMJ therapy treatment" loading="lazy">
         </picture>
       </div>
-      <!-- Slide 3 — TMJ Jaw Measurement -->
+      <!-- Slide 3 — Dr. Segal Neck Adjustment -->
+      <div class="hero-slide" role="img" aria-label="Dr. Kevin Segal performing cervical spine adjustment for TMJ">
+        <picture>
+          <img src="Assets/images/dr-segal-neck-adjustment-tmj-milwaukie.webp" alt="Dr. Kevin Segal DC performing neck adjustment for TMJ treatment in Milwaukie Oregon" loading="lazy">
+        </picture>
+      </div>
+      <!-- Slide 4 — TMJ Jaw Measurement -->
       <div class="hero-slide" role="img" aria-label="TMJ jaw measurement assessment">
         <picture>
           <img src="Assets/images/tmj-jaw-measurement-hero-1920x1080.webp" alt="TMJ jaw measurement assessment" loading="lazy">
@@ -1433,6 +1442,7 @@
     <button class="slide-dot"        role="tab" aria-selected="false" aria-label="Slide 2"></button>
     <button class="slide-dot"        role="tab" aria-selected="false" aria-label="Slide 3"></button>
     <button class="slide-dot"        role="tab" aria-selected="false" aria-label="Slide 4"></button>
+    <button class="slide-dot"        role="tab" aria-selected="false" aria-label="Slide 5"></button>
   </div>
 
   <!-- Trust pill — direct child of #hero so absolute positioning works correctly -->
@@ -2385,7 +2395,7 @@
     const cards = carousel.querySelectorAll('.article-card');
     let current = 0;
     let autoTimer;
-    const AUTO_INTERVAL = 8000;
+    const AUTO_INTERVAL = 7000;
 
     function visibleCount() {
       return window.innerWidth <= 900 ? 2 : 3;
@@ -2463,7 +2473,7 @@
     if (!slides.length) return;
     let current = 0;
     let timer;
-    const INTERVAL = 6000;
+    const INTERVAL = 5000;
 
     function goTo(index) {
       slides[current].classList.remove('active');
@@ -2492,7 +2502,7 @@
     if (!slides.length || !prev || !next) return;
     let current  = 0;
     let timer;
-    const INTERVAL = 6000;
+    const INTERVAL = 5000;
 
     function goTo(index) {
       slides[current].classList.remove('active');
