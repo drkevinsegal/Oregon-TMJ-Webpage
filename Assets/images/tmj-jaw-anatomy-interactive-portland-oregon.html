@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Interactive TMJ Anatomy — Explore Your Jaw | Oregon TMJ</title>
+  <meta name="description" content="Explore an interactive anatomical model of the jaw, TMJ disc, and surrounding muscles. See how the jaw opens and closes, what disc displacement looks like, and identify the muscles involved in TMJ disorder — Oregon TMJ, Milwaukie, Oregon." />
+  <link rel="canonical" href="https://www.oregontmj.com/tmj-jaw-anatomy-interactive-portland-oregon.html" />
+  <meta property="og:title" content="Interactive TMJ Anatomy Explorer | Oregon TMJ" />
+  <meta property="og:description" content="See inside your jaw — an interactive anatomical model showing the TMJ disc, jaw muscles, and what happens with disc displacement." />
+  <meta property="og:url" content="https://www.oregontmj.com/tmj-jaw-anatomy-interactive-portland-oregon.html" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --slate:#3D4F5C; --ice:#A8D8E8; --forest:#5A8A6A;
+      --pain-red:#E03030; --near-black:#1A2328; --off-white:#F4F7F9;
+      --mid-text:#5A6E7A; --light-text:#8FA4B0;
+      --border:rgba(168,216,232,0.2);
+      --shadow-sm:0 2px 16px rgba(26,35,40,0.10);
+      --radius:12px; --radius-lg:22px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--near-black);line-height:1.7;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,35,40,0.97);backdrop-filter:blur(16px);padding:0 28px;height:72px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#fff;letter-spacing:0.06em;text-decoration:none;}
+    .nav-logo span{color:var(--ice);}
+    .nav-back{font-size:0.83rem;color:var(--ice);text-decoration:none;}
+    .nav-back:hover{opacity:0.75;}
+    .nav-cta{background:var(--pain-red);color:#fff;padding:10px 22px;border-radius:50px;font-size:0.83rem;font-weight:600;text-decoration:none;}
+    .nav-cta:hover{background:#c42828;}
+
+    /* HERO */
+    .article-hero{background:var(--near-black);padding:130px 28px 72px;text-align:center;}
+    .article-tag{display:inline-block;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--forest);background:rgba(90,138,106,0.15);border:1px solid rgba(90,138,106,0.3);border-radius:50px;padding:5px 14px;margin-bottom:20px;}
+    .article-hero h1{font-family:'Lora',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:500;color:#fff;line-height:1.3;max-width:760px;margin:0 auto 16px;}
+    .article-hero p{color:rgba(255,255,255,0.6);font-size:1rem;max-width:580px;margin:0 auto;}
+    .article-meta-bar{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:24px;}
+    .meta-item{font-size:0.8rem;color:rgba(255,255,255,0.5);}
+
+    /* BODY */
+    .page-body{max-width:1140px;margin:0 auto;padding:64px 28px 80px;}
+
+    /* TABS */
+    .tab-bar{display:flex;gap:8px;justify-content:center;margin-bottom:36px;flex-wrap:wrap;}
+    .tab-btn{font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;padding:10px 26px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--mid-text);cursor:pointer;transition:all 0.2s;letter-spacing:0.02em;}
+    .tab-btn:hover{border-color:var(--ice);color:var(--near-black);}
+    .tab-btn.active{background:var(--near-black);color:#fff;border-color:var(--near-black);}
+
+    /* INTERACTIVE LAYOUT */
+    .interactive-layout{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;}
+    @media(max-width:960px){.interactive-layout{grid-template-columns:1fr;}}
+
+    /* IMAGE STAGE */
+    .img-stage{position:relative;border-radius:var(--radius-lg);overflow:hidden;background:#0A1014;box-shadow:0 12px 60px rgba(0,0,0,0.45);line-height:0;}
+    .stage-img{width:100%;height:auto;display:block;transition:opacity 0.4s ease;}
+    .stage-img.hidden{opacity:0;position:absolute;top:0;left:0;pointer-events:none;}
+
+    /* HOTSPOT OVERLAY */
+    .hotspot-layer{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+    .hotspot-layer svg{width:100%;height:100%;position:absolute;top:0;left:0;}
+
+    /* Muscle hotspot regions — pointer-events on */
+    .hotspot{cursor:pointer;pointer-events:all;transition:opacity 0.2s;}
+    .hotspot:focus{outline:2px solid var(--ice);outline-offset:2px;}
+    .hotspot-fill{opacity:0;transition:opacity 0.25s;}
+    .hotspot:hover .hotspot-fill{opacity:0.35;}
+    .hotspot.active .hotspot-fill{opacity:0.55;}
+    .hotspot.dimmed .hotspot-fill{opacity:0;}
+    .hotspot.dimmed{opacity:0.3;}
+
+    /* Muscle label pins */
+    .pin-group{pointer-events:none;opacity:0;transition:opacity 0.25s;}
+    .pin-group.visible{opacity:1;}
+    .pin-circle{fill:white;stroke:var(--near-black);stroke-width:1;}
+    .pin-line{stroke:rgba(255,255,255,0.7);stroke-width:1.5;stroke-dasharray:4 3;}
+    .pin-label-bg{rx:4;fill:rgba(10,16,20,0.88);}
+    .pin-label-text{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;fill:white;dominant-baseline:middle;}
+
+    /* VIEW INDICATOR */
+    .view-badge{position:absolute;top:14px;left:14px;background:rgba(10,16,20,0.8);border:1px solid rgba(168,216,232,0.25);border-radius:50px;padding:5px 14px;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(168,216,232,0.8);pointer-events:none;}
+
+    /* STAGE HINT */
+    .stage-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(10,16,20,0.75);border:1px solid rgba(168,216,232,0.2);border-radius:50px;padding:5px 16px;font-size:0.72rem;color:rgba(255,255,255,0.55);white-space:nowrap;pointer-events:none;transition:opacity 0.4s;}
+    .stage-hint.hidden{opacity:0;}
+
+    /* VIEW TOGGLE (anterior/lateral) */
+    .view-toggle{position:absolute;top:14px;right:14px;display:flex;gap:6px;}
+    .view-toggle-btn{font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:50px;border:1px solid rgba(168,216,232,0.3);background:rgba(10,16,20,0.8);color:rgba(168,216,232,0.7);cursor:pointer;transition:all 0.2s;}
+    .view-toggle-btn.active,.view-toggle-btn:hover{background:var(--ice);color:var(--near-black);border-color:var(--ice);}
+
+    /* DISC COMPARISON */
+    .disc-compare-wrap{position:relative;}
+    .disc-compare-slider{width:100%;margin-top:14px;}
+    .disc-tabs{display:flex;gap:8px;margin-bottom:16px;}
+    .disc-tab-btn{flex:1;font-size:0.78rem;font-weight:600;padding:8px 12px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--mid-text);cursor:pointer;transition:all 0.2s;text-align:center;}
+    .disc-tab-btn.active{background:var(--near-black);color:#fff;border-color:var(--near-black);}
+    .disc-tab-btn.active.displaced{background:#8B1A1A;border-color:#8B1A1A;}
+
+    /* INFO PANEL */
+    .info-panel{display:flex;flex-direction:column;gap:14px;}
+    .info-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);transition:border-color 0.2s,box-shadow 0.2s;}
+    .info-card.highlighted{border-color:var(--ice);box-shadow:0 0 0 3px rgba(168,216,232,0.12),var(--shadow-sm);}
+    .info-card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+    .muscle-swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0;}
+    .info-card h3{font-family:'Lora',serif;font-size:1.05rem;font-weight:500;color:var(--near-black);}
+    .info-card p{font-size:0.87rem;color:var(--mid-text);line-height:1.7;margin:0;}
+    .role-tag{display:inline-block;font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:50px;margin-bottom:10px;}
+
+    /* DEFAULT PROMPT */
+    .prompt-card{background:rgba(168,216,232,0.06);border:1.5px dashed rgba(168,216,232,0.3);border-radius:var(--radius-lg);padding:28px 22px;text-align:center;}
+    .prompt-card p{font-size:0.88rem;color:var(--light-text);margin:0;}
+    .prompt-card strong{display:block;font-size:0.95rem;color:var(--slate);margin-bottom:6px;}
+    .prompt-icon{font-size:1.6rem;margin-bottom:10px;display:block;}
+
+    /* DISC STATUS CARD */
+    .disc-status-card{background:var(--near-black);border-radius:var(--radius-lg);padding:22px;}
+    .disc-status-card h3{font-family:'Lora',serif;font-size:1rem;color:var(--ice);margin-bottom:8px;}
+    .disc-status-card p{font-size:0.87rem;color:rgba(255,255,255,0.65);line-height:1.7;margin:0;}
+    .status-pill{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:5px 14px;border-radius:50px;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;}
+    .status-pill.normal{background:rgba(90,138,106,0.2);color:#7CB87C;}
+    .status-pill.displaced{background:rgba(224,48,48,0.2);color:#FF7070;}
+    .status-dot{width:7px;height:7px;border-radius:50%;}
+
+    /* LEGEND */
+    .muscle-legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;}
+    .legend-pill{display:inline-flex;align-items:center;gap:7px;font-size:0.78rem;color:var(--mid-text);cursor:pointer;padding:5px 14px;border-radius:50px;border:1px solid var(--border);transition:all 0.2s;background:#fff;}
+    .legend-pill:hover{border-color:var(--ice);color:var(--near-black);}
+    .legend-pill.active{font-weight:600;color:var(--near-black);border-color:transparent;}
+    .legend-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+
+    /* EXPLAINER */
+    .explainer{max-width:740px;margin:72px auto 0;}
+    .explainer h2{font-family:'Lora',serif;font-size:1.45rem;font-weight:500;color:var(--near-black);margin:48px 0 16px;line-height:1.35;}
+    .explainer p{font-size:1rem;color:#2A3640;line-height:1.8;margin-bottom:20px;}
+    .callout{background:rgba(168,216,232,0.1);border-left:4px solid var(--ice);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:32px 0;}
+    .callout p{margin-bottom:0;color:var(--slate);font-size:0.95rem;}
+
+    /* COMPARISON IMAGE */
+    .comparison-figure{margin:40px 0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 8px 40px rgba(26,35,40,0.2);}
+    .comparison-figure img{width:100%;height:auto;display:block;}
+    .comparison-caption{background:var(--near-black);padding:16px 24px;font-size:0.82rem;color:rgba(255,255,255,0.5);text-align:center;letter-spacing:0.03em;}
+
+    /* CTA */
+    .article-cta{background:linear-gradient(135deg,var(--slate) 0%,var(--near-black) 100%);border-radius:var(--radius-lg);padding:48px 40px;text-align:center;margin:64px 0 48px;}
+    .article-cta h2{font-family:'Lora',serif;font-size:1.6rem;color:#fff;margin-bottom:12px;}
+    .article-cta p{color:rgba(255,255,255,0.65);font-size:0.95rem;margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;}
+    .btn-cta{display:inline-block;background:var(--pain-red);color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:0.95rem;text-decoration:none;}
+    .btn-cta:hover{background:#c42828;}
+    .btn-secondary{display:inline-block;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:13px 28px;border-radius:50px;font-size:0.88rem;text-decoration:none;margin-left:12px;}
+
+    /* FOOTER */
+    footer{background:var(--near-black);padding:40px 28px;text-align:center;}
+    footer p{font-size:0.8rem;color:rgba(255,255,255,0.35);}
+    footer a{color:var(--ice);text-decoration:none;}
+
+    @media(max-width:640px){
+      .article-hero{padding:110px 20px 56px;}
+      .page-body{padding:40px 20px 60px;}
+      .article-cta{padding:36px 24px;}
+      .btn-secondary{margin-left:0;margin-top:12px;display:block;}
+      .view-toggle{display:none;}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://oregontmj.com/tmj-jaw-anatomy-interactive-portland-oregon.html","name":"Interactive TMJ Anatomy Explorer — Oregon TMJ","description":"An interactive anatomical model of the jaw joint, TMJ disc, and surrounding muscles — Oregon TMJ, Milwaukie, Oregon.","url":"https://oregontmj.com/tmj-jaw-anatomy-interactive-portland-oregon.html","datePublished":"2026-05-19","dateModified":"2026-05-19","publisher":{"@type":"Organization","name":"Oregon TMJ","url":"https://oregontmj.com"},"about":{"@type":"MedicalCondition","name":"Temporomandibular Joint Disorder"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://oregontmj.com"},{"@type":"ListItem","position":2,"name":"TMJ Anatomy Explorer","item":"https://oregontmj.com/tmj-jaw-anatomy-interactive-portland-oregon.html"}]}]}
+  </script>
+</head>
+<body>
+
+<a href="#main-content" style="position:absolute;left:-9999px">Skip to main content</a>
+
+<nav aria-label="Site navigation">
+  <a href="index.html" class="nav-logo">OREGON <span>TMJ</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+  <a href="https://backinshapechiro.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="nav-cta">Book Appointment</a>
+</nav>
+
+<header class="article-hero">
+  <span class="article-tag">Interactive Anatomy</span>
+  <h1>Explore Your Jaw — An Interactive TMJ Anatomy Model</h1>
+  <p>Click on any muscle to identify it and learn its role in TMJ disorder. Switch views to see the disc in normal and displaced positions.</p>
+  <div class="article-meta-bar">
+    <span class="meta-item">Oregon TMJ · Milwaukie, Oregon</span>
+    <span class="meta-item">Educational Interactive Tool</span>
+  </div>
+</header>
+
+<main id="main-content">
+<div class="page-body">
+
+  <!-- TAB BAR -->
+  <div class="tab-bar" role="tablist">
+    <button class="tab-btn active" data-tab="muscles" role="tab">Jaw Muscles</button>
+    <button class="tab-btn" data-tab="disc" role="tab">TMJ Disc</button>
+  </div>
+
+  <!-- INTERACTIVE LAYOUT -->
+  <div class="interactive-layout">
+
+    <!-- IMAGE STAGE -->
+    <div>
+      <div class="img-stage" id="img-stage">
+
+        <!-- MUSCLES VIEW: lateral (default) -->
+        <img id="img-lateral" class="stage-img"
+          src="Assets/images/tmj-lateral-skull-muscles.webp"
+          alt="Lateral view of skull showing temporalis and masseter jaw muscles"
+          width="1536" height="1024" />
+
+        <!-- MUSCLES VIEW: anterior -->
+        <img id="img-anterior" class="stage-img hidden"
+          src="Assets/images/tmj-anterior-skull-muscles.webp"
+          alt="Anterior view of skull showing jaw muscles"
+          width="1536" height="1024" />
+
+        <!-- DISC VIEW: normal -->
+        <img id="img-disc-normal" class="stage-img hidden"
+          src="Assets/images/tmj-disc-normal-anatomy.webp"
+          alt="Normal TMJ disc position — disc centered over condyle"
+          width="1536" height="1024" />
+
+        <!-- DISC VIEW: displaced -->
+        <img id="img-disc-displaced" class="stage-img hidden"
+          src="Assets/images/tmj-disc-displaced-anatomy.webp"
+          alt="Anterior disc displacement — disc displaced anteriorly"
+          width="1536" height="1024" />
+
+        <!-- HOTSPOT OVERLAY (muscles lateral view) -->
+        <div class="hotspot-layer" id="hotspot-lateral">
+          <svg viewBox="0 0 1536 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+            <!-- TEMPORALIS — large fan shape covering most of temporal region upper right -->
+            <g class="hotspot" data-muscle="temporalis" tabindex="0" role="button" aria-label="Temporalis muscle">
+              <path class="hotspot-fill" fill="#7CB9E8"
+                d="M830 80 Q920 60 1040 75 Q1140 92 1200 155 Q1250 210 1240 290 Q1225 365 1175 410 Q1125 448 1065 448 Q1005 445 960 415 Q915 382 890 330 Q860 268 848 200 Q838 140 830 80 Z"/>
+              <g class="pin-group" data-label="temporalis">
+                <line class="pin-line" x1="1060" y1="260" x2="900" y2="210"/>
+                <circle class="pin-circle" cx="1060" cy="260" r="7"/>
+                <rect class="pin-label-bg" x="710" y="192" width="185" height="30" rx="5"/>
+                <text class="pin-label-text" x="803" y="207" text-anchor="middle">TEMPORALIS</text>
+              </g>
+            </g>
+
+            <!-- MASSETER — large diagonal red muscle cheekbone to jaw angle -->
+            <g class="hotspot" data-muscle="masseter" tabindex="0" role="button" aria-label="Masseter muscle">
+              <path class="hotspot-fill" fill="#E8A87C"
+                d="M390 490 Q460 465 545 468 Q615 472 665 510 Q705 545 715 600 Q722 650 700 695 Q675 738 625 758 Q572 775 518 762 Q462 748 425 710 Q388 670 378 615 Q368 558 390 490 Z"/>
+              <g class="pin-group" data-label="masseter">
+                <line class="pin-line" x1="545" y1="615" x2="355" y2="590"/>
+                <circle class="pin-circle" cx="545" cy="615" r="7"/>
+                <rect class="pin-label-bg" x="155" y="572" width="196" height="30" rx="5"/>
+                <text class="pin-label-text" x="253" y="587" text-anchor="middle">MASSETER</text>
+              </g>
+            </g>
+
+            <!-- LATERAL PTERYGOID — small silver structure at TMJ joint area -->
+            <g class="hotspot" data-muscle="lateral-pterygoid" tabindex="0" role="button" aria-label="Lateral pterygoid muscle">
+              <path class="hotspot-fill" fill="#7CE8A8"
+                d="M798 430 Q838 415 875 422 Q905 430 915 455 Q922 478 908 500 Q890 520 860 524 Q828 526 806 508 Q782 488 782 462 Z"/>
+              <g class="pin-group" data-label="lateral-pterygoid">
+                <line class="pin-line" x1="852" y1="468" x2="1010" y2="500"/>
+                <circle class="pin-circle" cx="852" cy="468" r="7"/>
+                <rect class="pin-label-bg" x="1006" y="482" width="234" height="30" rx="5"/>
+                <text class="pin-label-text" x="1123" y="497" text-anchor="middle">LATERAL PTERYGOID</text>
+              </g>
+            </g>
+
+            <!-- MEDIAL PTERYGOID — deep muscle below/behind masseter lower region -->
+            <g class="hotspot" data-muscle="medial-pterygoid" tabindex="0" role="button" aria-label="Medial pterygoid muscle">
+              <path class="hotspot-fill" fill="#A87CE8"
+                d="M668 680 Q710 662 752 668 Q785 676 796 702 Q804 726 790 748 Q772 768 742 772 Q710 774 688 756 Q664 736 664 706 Z"/>
+              <g class="pin-group" data-label="medial-pterygoid">
+                <line class="pin-line" x1="728" y1="716" x2="900" y2="758"/>
+                <circle class="pin-circle" cx="728" cy="716" r="7"/>
+                <rect class="pin-label-bg" x="896" y="740" width="234" height="30" rx="5"/>
+                <text class="pin-label-text" x="1013" y="755" text-anchor="middle">MEDIAL PTERYGOID</text>
+              </g>
+            </g>
+
+            <!-- DIGASTRIC — long tendon below jaw running posteriorly -->
+            <g class="hotspot" data-muscle="digastric" tabindex="0" role="button" aria-label="Digastric muscle">
+              <path class="hotspot-fill" fill="#E87C9A"
+                d="M580 830 Q640 808 710 812 Q760 818 785 848 Q805 874 795 902 Q780 928 748 936 Q712 942 678 930 Q642 916 622 888 Q600 858 580 830 Z"/>
+              <g class="pin-group" data-label="digastric">
+                <line class="pin-line" x1="682" y1="872" x2="840" y2="900"/>
+                <circle class="pin-circle" cx="682" cy="872" r="7"/>
+                <rect class="pin-label-bg" x="836" y="882" width="168" height="30" rx="5"/>
+                <text class="pin-label-text" x="920" y="897" text-anchor="middle">DIGASTRIC</text>
+              </g>
+            </g>
+
+          </svg>
+        </div>
+
+        <!-- HOTSPOT OVERLAY (muscles anterior view) -->
+        <div class="hotspot-layer hidden" id="hotspot-anterior">
+          <svg viewBox="0 0 1536 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+            <!-- TEMPORALIS left — temple area on skull left side -->
+            <g class="hotspot" data-muscle="temporalis" tabindex="0" role="button" aria-label="Temporalis muscle left">
+              <path class="hotspot-fill" fill="#7CB9E8"
+                d="M268 148 Q320 128 378 138 Q418 150 430 192 Q438 228 420 260 Q400 290 365 298 Q328 304 298 284 Q265 262 256 225 Q248 188 268 148 Z"/>
+            </g>
+            <!-- TEMPORALIS right — temple area on skull right side -->
+            <g class="hotspot" data-muscle="temporalis" tabindex="0" role="button" aria-label="Temporalis muscle right">
+              <path class="hotspot-fill" fill="#7CB9E8"
+                d="M1158 148 Q1210 128 1268 138 Q1308 150 1320 192 Q1328 228 1310 260 Q1290 290 1255 298 Q1218 304 1188 284 Q1155 262 1146 225 Q1138 188 1158 148 Z"/>
+              <g class="pin-group" data-label="temporalis">
+                <line class="pin-line" x1="1230" y1="218" x2="1090" y2="200"/>
+                <circle class="pin-circle" cx="1230" cy="218" r="7"/>
+                <rect class="pin-label-bg" x="896" y="182" width="190" height="30" rx="5"/>
+                <text class="pin-label-text" x="991" y="197" text-anchor="middle">TEMPORALIS</text>
+              </g>
+            </g>
+
+            <!-- MASSETER left — jaw angle left, large red muscle -->
+            <g class="hotspot" data-muscle="masseter" tabindex="0" role="button" aria-label="Masseter muscle left">
+              <path class="hotspot-fill" fill="#E8A87C"
+                d="M295 548 Q340 528 395 532 Q438 538 460 572 Q478 604 468 645 Q456 682 422 700 Q386 716 350 706 Q312 694 292 660 Q272 624 275 585 Z"/>
+              <g class="pin-group" data-label="masseter">
+                <line class="pin-line" x1="376" y1="616" x2="228" y2="608"/>
+                <circle class="pin-circle" cx="376" cy="616" r="7"/>
+                <rect class="pin-label-bg" x="100" y="590" width="126" height="30" rx="5"/>
+                <text class="pin-label-text" x="163" y="605" text-anchor="middle">MASSETER</text>
+              </g>
+            </g>
+
+            <!-- MASSETER right -->
+            <g class="hotspot" data-muscle="masseter" tabindex="0" role="button" aria-label="Masseter muscle right">
+              <path class="hotspot-fill" fill="#E8A87C"
+                d="M1076 548 Q1120 528 1175 532 Q1218 538 1240 572 Q1258 604 1248 645 Q1236 682 1202 700 Q1166 716 1130 706 Q1092 694 1072 660 Q1052 624 1055 585 Z"/>
+            </g>
+
+            <!-- LATERAL PTERYGOID left -->
+            <g class="hotspot" data-muscle="lateral-pterygoid" tabindex="0" role="button" aria-label="Lateral pterygoid muscle left">
+              <path class="hotspot-fill" fill="#7CE8A8"
+                d="M258 448 Q290 434 325 440 Q350 448 360 470 Q366 490 354 508 Q338 524 312 526 Q284 526 266 508 Q248 490 250 466 Z"/>
+            </g>
+            <!-- LATERAL PTERYGOID right -->
+            <g class="hotspot" data-muscle="lateral-pterygoid" tabindex="0" role="button" aria-label="Lateral pterygoid muscle right">
+              <path class="hotspot-fill" fill="#7CE8A8"
+                d="M1178 448 Q1210 434 1245 440 Q1270 448 1280 470 Q1286 490 1274 508 Q1258 524 1232 526 Q1204 526 1186 508 Q1168 490 1170 466 Z"/>
+              <g class="pin-group" data-label="lateral-pterygoid">
+                <line class="pin-line" x1="1228" y1="480" x2="1100" y2="470"/>
+                <circle class="pin-circle" cx="1228" cy="480" r="7"/>
+                <rect class="pin-label-bg" x="860" y="452" width="236" height="30" rx="5"/>
+                <text class="pin-label-text" x="978" y="467" text-anchor="middle">LATERAL PTERYGOID</text>
+              </g>
+            </g>
+
+            <!-- MEDIAL PTERYGOID left -->
+            <g class="hotspot" data-muscle="medial-pterygoid" tabindex="0" role="button" aria-label="Medial pterygoid muscle left">
+              <path class="hotspot-fill" fill="#A87CE8"
+                d="M330 698 Q368 680 408 686 Q438 694 448 718 Q456 740 442 760 Q424 778 396 780 Q366 780 346 762 Q326 742 328 718 Z"/>
+            </g>
+            <!-- MEDIAL PTERYGOID right -->
+            <g class="hotspot" data-muscle="medial-pterygoid" tabindex="0" role="button" aria-label="Medial pterygoid muscle right">
+              <path class="hotspot-fill" fill="#A87CE8"
+                d="M1090 698 Q1128 680 1168 686 Q1198 694 1208 718 Q1216 740 1202 760 Q1184 778 1156 780 Q1126 780 1106 762 Q1086 742 1088 718 Z"/>
+              <g class="pin-group" data-label="medial-pterygoid">
+                <line class="pin-line" x1="1148" y1="732" x2="1020" y2="750"/>
+                <circle class="pin-circle" cx="1148" cy="732" r="7"/>
+                <rect class="pin-label-bg" x="778" y="732" width="238" height="30" rx="5"/>
+                <text class="pin-label-text" x="897" y="747" text-anchor="middle">MEDIAL PTERYGOID</text>
+              </g>
+            </g>
+
+            <!-- DIGASTRIC — below chin center -->
+            <g class="hotspot" data-muscle="digastric" tabindex="0" role="button" aria-label="Digastric muscle">
+              <path class="hotspot-fill" fill="#E87C9A"
+                d="M628 858 Q688 838 758 842 Q808 848 828 876 Q844 900 832 926 Q816 950 778 956 Q736 960 700 948 Q660 934 642 908 Q624 880 628 858 Z"/>
+              <g class="pin-group" data-label="digastric">
+                <line class="pin-line" x1="728" y1="896" x2="880" y2="918"/>
+                <circle class="pin-circle" cx="728" cy="896" r="7"/>
+                <rect class="pin-label-bg" x="876" y="900" width="168" height="30" rx="5"/>
+                <text class="pin-label-text" x="960" y="915" text-anchor="middle">DIGASTRIC</text>
+              </g>
+            </g>
+
+          </svg>
+        </div>
+
+                <!-- VIEW BADGE -->
+        <div class="view-badge" id="view-badge">Lateral View</div>
+
+        <!-- VIEW TOGGLE (muscles tab only) -->
+        <div class="view-toggle" id="view-toggle">
+          <button class="view-toggle-btn active" data-view="lateral">Lateral</button>
+          <button class="view-toggle-btn" data-view="anterior">Anterior</button>
+        </div>
+
+        <!-- STAGE HINT -->
+        <div class="stage-hint" id="stage-hint">Click any highlighted muscle region</div>
+
+      </div><!-- end img-stage -->
+
+      <!-- DISC TAB: comparison toggle -->
+      <div id="disc-tab-controls" style="display:none;margin-top:16px;">
+        <div class="disc-tabs">
+          <button class="disc-tab-btn active" data-disc="normal">Normal TMJ</button>
+          <button class="disc-tab-btn displaced" data-disc="displaced">Disc Displacement</button>
+        </div>
+      </div>
+
+      <!-- MUSCLE LEGEND -->
+      <div class="muscle-legend" id="muscle-legend">
+        <div class="legend-pill" data-muscle="temporalis"><div class="legend-swatch" style="background:#7CB9E8;"></div>Temporalis</div>
+        <div class="legend-pill" data-muscle="masseter"><div class="legend-swatch" style="background:#E8A87C;"></div>Masseter</div>
+        <div class="legend-pill" data-muscle="lateral-pterygoid"><div class="legend-swatch" style="background:#7CE8A8;"></div>Lateral Pterygoid</div>
+        <div class="legend-pill" data-muscle="medial-pterygoid"><div class="legend-swatch" style="background:#A87CE8;"></div>Medial Pterygoid</div>
+        <div class="legend-pill" data-muscle="digastric"><div class="legend-swatch" style="background:#E87C9A;"></div>Digastric</div>
+      </div>
+
+    </div><!-- end left col -->
+
+    <!-- INFO PANEL -->
+    <div class="info-panel" id="info-panel">
+
+      <div class="prompt-card" id="default-prompt">
+        <span class="prompt-icon">👆</span>
+        <strong>Click any muscle to identify it</strong>
+        <p>Each color overlay highlights a different jaw muscle. Select it to learn its name, function, and how it relates to TMJ disorder.</p>
+      </div>
+
+      <!-- Muscle cards — hidden until selected -->
+      <div class="info-card" id="card-temporalis" style="display:none">
+        <div class="role-tag" style="background:rgba(124,185,232,0.12);color:#3A7AB8;">Jaw Elevator &amp; Retruder</div>
+        <div class="info-card-header">
+          <div class="muscle-swatch" style="background:#7CB9E8;"></div>
+          <h3>Temporalis</h3>
+        </div>
+        <p>A broad, fan-shaped muscle covering the side of the skull. It closes the jaw and pulls it backward. In TMJ disorder, chronic temporalis tension produces the hallmark <strong>temple headache</strong> — a band of pressure across the forehead and temples that patients often mistake for a tension headache. The muscle sits directly under the skin here, and when overloaded from clenching or bruxism, it refers pain forward across the head.</p>
+      </div>
+
+      <div class="info-card" id="card-masseter" style="display:none">
+        <div class="role-tag" style="background:rgba(232,168,124,0.12);color:#B06030;">Primary Jaw Closer</div>
+        <div class="info-card-header">
+          <div class="muscle-swatch" style="background:#E8A87C;"></div>
+          <h3>Masseter</h3>
+        </div>
+        <p>The most powerful muscle in the body relative to its size. Running from the cheekbone down to the jaw angle, the masseter generates the force for chewing and clenching. In TMJ patients, chronic masseter <strong>hypertrophy from bruxism</strong> is one of the most visible signs of the condition — and one of the most common drivers of jaw pain, facial soreness, and morning stiffness. You can feel it bulge when you clench your teeth.</p>
+      </div>
+
+      <div class="info-card" id="card-lateral-pterygoid" style="display:none">
+        <div class="role-tag" style="background:rgba(124,232,168,0.12);color:#287848;">Key Disc Controller</div>
+        <div class="info-card-header">
+          <div class="muscle-swatch" style="background:#7CE8A8;"></div>
+          <h3>Lateral Pterygoid</h3>
+        </div>
+        <p>Arguably the most important muscle in TMJ disorder. Its superior head <strong>attaches directly to the articular disc</strong> and controls disc position during jaw movement. When this muscle is dysfunctional — from trauma, overuse, or neuromuscular imbalance — it pulls the disc forward out of position, producing the clicking, popping, and locking characteristic of disc displacement. This is why lateral pterygoid function is central to any chiropractic TMJ assessment.</p>
+      </div>
+
+      <div class="info-card" id="card-medial-pterygoid" style="display:none">
+        <div class="role-tag" style="background:rgba(168,124,232,0.12);color:#6030A8;">Deep Jaw Closer</div>
+        <div class="info-card-header">
+          <div class="muscle-swatch" style="background:#A87CE8;"></div>
+          <h3>Medial Pterygoid</h3>
+        </div>
+        <p>The medial pterygoid lies on the <strong>inner surface of the jaw</strong>, forming a sling with the masseter to elevate and close the mandible. Because it's deep and medial, it's often overlooked — but in patients with chronic clenching or bruxism, it develops significant trigger points that produce a deep, internal jaw ache that's difficult to localize. It also contributes to restricted jaw opening when in spasm.</p>
+      </div>
+
+      <div class="info-card" id="card-digastric" style="display:none">
+        <div class="role-tag" style="background:rgba(232,124,154,0.12);color:#A03050;">Jaw Opener &amp; Hyoid Stabilizer</div>
+        <div class="info-card-header">
+          <div class="muscle-swatch" style="background:#E87C9A;"></div>
+          <h3>Digastric</h3>
+        </div>
+        <p>The digastric has two bellies connected by a tendon looped around the hyoid bone. The anterior belly <strong>opens the jaw</strong> and depresses the mandible. In TMJ disorder, the digastric often becomes hypertonic — particularly in patients who hold the jaw slightly open as a pain-avoidance behavior. Hyoid dysfunction from digastric imbalance can also contribute to throat tension and difficulty swallowing.</p>
+      </div>
+
+      <!-- Disc info card -->
+      <div class="disc-status-card" id="disc-card" style="display:none">
+        <h3 id="disc-card-title">Normal TMJ — Disc in Position</h3>
+        <p id="disc-card-body">In a healthy joint, the biconcave articular disc sits centered over the mandibular condyle — between it and the temporal bone above. As the jaw opens, the condyle rotates then translates forward, and the disc moves with it throughout the full range of motion. The result is smooth, silent, pain-free jaw movement.</p>
+        <div class="status-pill normal" id="disc-status-pill">
+          <div class="status-dot" id="disc-dot" style="background:#5A8A6A;"></div>
+          <span id="disc-status-text">Normal — disc centered</span>
+        </div>
+      </div>
+
+    </div><!-- end info-panel -->
+
+  </div><!-- end interactive-layout -->
+
+  <!-- EXPLAINER -->
+  <div class="explainer">
+
+    <h2>Why the Jaw Muscles Matter in TMJ Disorder</h2>
+    <p>Most patients think of TMJ disorder as a joint problem. The joint is part of it — but the muscles surrounding the TMJ are equally important. The masseter and temporalis generate the forces that load the joint. The lateral pterygoid controls where the disc sits. The medial pterygoid and digastric determine how the jaw opens and closes. When any of these muscles become chronically overloaded, tight, or imbalanced, the entire system breaks down.</p>
+    <p>At Oregon TMJ, Dr. Segal evaluates both the joint mechanics and the surrounding muscle system — because treating one without the other rarely produces lasting results.</p>
+
+    <h2>Normal TMJ vs. Disc Displacement — Side by Side</h2>
+    <p>The clicking or popping many patients hear is the sound of the condyle sliding over the edge of a displaced disc. In a healthy joint, the disc stays centered and the jaw moves silently. When the lateral pterygoid pulls the disc forward — from trauma, overuse, or chronic muscle imbalance — the condyle clicks over the posterior band of the disc on opening.</p>
+
+    <div class="comparison-figure">
+      <img src="Assets/images/tmj-disc-comparison.webp"
+        alt="Side by side comparison of normal TMJ disc position versus anterior disc displacement"
+        width="1536" height="1024" loading="lazy" />
+      <div class="comparison-caption">Left: Normal TMJ — disc centered over condyle. Right: Anterior disc displacement — disc pulled forward, condyle no longer cushioned.</div>
+    </div>
+
+    <div class="callout">
+      <p><strong>Clinical note:</strong> Not all TMJ clicking indicates the same severity of displacement. Some patients have stable clicking for years with no progression. Others progress to locking or significant pain. A proper evaluation determines where you are on that spectrum — and what, if anything, needs to be done about it.</p>
+    </div>
+
+    <h2>The Neck Connection</h2>
+    <p>What this anatomy model doesn't show is the cervical spine — but it matters as much as anything visible here. The muscles of the jaw attach to the hyoid, which connects through fascial chains to the neck. The upper cervical vertebrae share nerve pathways with the trigeminal nerve that supplies the jaw. Forward head posture changes the resting position of the mandible. This is why effective TMJ care at Oregon TMJ always includes a cervical spine assessment — the jaw doesn't work in isolation.</p>
+
+    <div class="article-cta">
+      <h2>Ready to Understand What's Happening in Your Jaw?</h2>
+      <p>A proper evaluation at Oregon TMJ looks at the joint mechanics, disc position, muscle function, and cervical spine together — and explains what we find in terms you can understand.</p>
+      <a href="https://backinshapechiro.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="btn-cta">Book an Appointment</a>
+      <a href="index.html#request-form" class="btn-secondary">Request Information</a>
+    </div>
+
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <p><a href="index.html">Oregon TMJ</a> · 6501 SE King Road, Milwaukie, Oregon 97222</p>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
+    <a href="tel:5037748525" style="display:inline-flex;align-items:center;gap:6px;background:#3a7d44;color:#fff;padding:0 16px;height:36px;border-radius:50px;font-size:0.78rem;font-weight:600;text-decoration:none;">📞 Call (503) 774-8525</a>
+    <a href="sms:5037883800" style="display:inline-flex;align-items:center;gap:6px;background:#A8D8E8;color:#1A2328;padding:0 16px;height:36px;border-radius:50px;font-size:0.78rem;font-weight:600;text-decoration:none;">💬 Text (503) 788-3800</a>
+  </div>
+  <p style="margin-top:8px">This interactive model is for educational purposes only. Anatomical representations are illustrative.</p>
+</footer>
+
+<script defer src="/_vercel/insights/script.js"></script>
+
+<script>
+(function(){
+
+  // ── STATE
+  let currentTab = 'muscles';
+  let currentView = 'lateral'; // lateral | anterior
+  let selectedMuscle = null;
+  let currentDisc = 'normal';
+
+  // ── ELEMENTS
+  const imgLateral       = document.getElementById('img-lateral');
+  const imgAnterior      = document.getElementById('img-anterior');
+  const imgDiscNormal    = document.getElementById('img-disc-normal');
+  const imgDiscDisplaced = document.getElementById('img-disc-displaced');
+  const hotspotLateral   = document.getElementById('hotspot-lateral');
+  const hotspotAnterior  = document.getElementById('hotspot-anterior');
+  const viewBadge        = document.getElementById('view-badge');
+  const viewToggle       = document.getElementById('view-toggle');
+  const discTabControls  = document.getElementById('disc-tab-controls');
+  const muscleLegend     = document.getElementById('muscle-legend');
+  const stageHint        = document.getElementById('stage-hint');
+  const defaultPrompt    = document.getElementById('default-prompt');
+  const discCard         = document.getElementById('disc-card');
+  const discTitle        = document.getElementById('disc-card-title');
+  const discBody         = document.getElementById('disc-card-body');
+  const discPill         = document.getElementById('disc-status-pill');
+  const discDot          = document.getElementById('disc-dot');
+  const discStatusText   = document.getElementById('disc-status-text');
+
+  const muscleCards = {
+    temporalis:         document.getElementById('card-temporalis'),
+    masseter:           document.getElementById('card-masseter'),
+    'lateral-pterygoid': document.getElementById('card-lateral-pterygoid'),
+    'medial-pterygoid':  document.getElementById('card-medial-pterygoid'),
+    digastric:          document.getElementById('card-digastric'),
+  };
+
+  // ── TAB SWITCHING
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentTab = this.dataset.tab;
+      switchTab(currentTab);
+    });
+  });
+
+  function switchTab(tab){
+    clearMuscleSelection();
+    if(tab === 'muscles'){
+      showMusclesView();
+    } else {
+      showDiscView(currentDisc);
+    }
+  }
+
+  function showMusclesView(){
+    // Images
+    if(currentView === 'lateral'){
+      show(imgLateral); hide(imgAnterior);
+      show(hotspotLateral); hide(hotspotAnterior);
+    } else {
+      hide(imgLateral); show(imgAnterior);
+      hide(hotspotLateral); show(hotspotAnterior);
+    }
+    hide(imgDiscNormal); hide(imgDiscDisplaced);
+    // Controls
+    show(viewToggle); show(muscleLegend);
+    hide(discTabControls);
+    // Info
+    show(defaultPrompt); hide(discCard);
+    hideAllMuscleCards();
+    stageHint.classList.remove('hidden');
+  }
+
+  function showDiscView(type){
+    hide(imgLateral); hide(imgAnterior);
+    hide(hotspotLateral); hide(hotspotAnterior);
+    if(type === 'normal'){ show(imgDiscNormal); hide(imgDiscDisplaced); }
+    else { hide(imgDiscNormal); show(imgDiscDisplaced); }
+    // Controls
+    hide(viewToggle); hide(muscleLegend);
+    show(discTabControls);
+    stageHint.classList.add('hidden');
+    // Info
+    hide(defaultPrompt); hideAllMuscleCards();
+    show(discCard);
+    if(type === 'normal'){
+      viewBadge.textContent = 'Normal TMJ';
+      discTitle.textContent = 'Normal TMJ — Disc in Position';
+      discBody.textContent = 'In a healthy joint, the biconcave articular disc sits centered over the mandibular condyle — between it and the temporal bone above. As the jaw opens, the condyle rotates then translates forward, and the disc moves with it throughout the full range of motion. The result is smooth, silent, pain-free jaw movement with no clicking.';
+      discDot.style.background = '#5A8A6A';
+      discStatusText.textContent = 'Normal — disc centered';
+      discPill.className = 'status-pill normal';
+    } else {
+      viewBadge.textContent = 'Disc Displacement';
+      discTitle.textContent = 'Anterior Disc Displacement';
+      discBody.textContent = 'When the lateral pterygoid muscle — or trauma — pulls the disc forward out of its normal position, the condyle now sits behind the disc rather than under it. On jaw opening, the condyle must click over the posterior band of the disc, producing the characteristic TMJ pop. Without treatment, the disc can become permanently displaced, leading to restricted opening and accelerated joint wear.';
+      discDot.style.background = '#E03030';
+      discStatusText.textContent = 'Displaced — clicking / pain / locking';
+      discPill.className = 'status-pill displaced';
+    }
+  }
+
+  // ── VIEW TOGGLE (lateral / anterior)
+  document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentView = this.dataset.view;
+      viewBadge.textContent = currentView === 'lateral' ? 'Lateral View' : 'Anterior View';
+      clearMuscleSelection();
+      showMusclesView();
+    });
+  });
+
+  // ── DISC TAB TOGGLE
+  document.querySelectorAll('.disc-tab-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.disc-tab-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentDisc = this.dataset.disc;
+      showDiscView(currentDisc);
+    });
+  });
+
+  // ── MUSCLE HOTSPOT CLICKS
+  document.querySelectorAll('.hotspot').forEach(el => {
+    el.addEventListener('click', function(){ selectMuscle(this.dataset.muscle); });
+    el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ selectMuscle(this.dataset.muscle); }});
+  });
+
+  // ── LEGEND CLICKS
+  document.querySelectorAll('.legend-pill').forEach(el => {
+    el.addEventListener('click', function(){ selectMuscle(this.dataset.muscle); });
+  });
+
+  function selectMuscle(muscle){
+    if(selectedMuscle === muscle){ clearMuscleSelection(); return; }
+    selectedMuscle = muscle;
+    stageHint.classList.add('hidden');
+
+    // Dim all hotspots, activate selected
+    document.querySelectorAll('.hotspot').forEach(h => {
+      if(h.dataset.muscle === muscle){
+        h.classList.remove('dimmed'); h.classList.add('active');
+      } else {
+        h.classList.add('dimmed'); h.classList.remove('active');
+      }
+    });
+
+    // Show pin labels
+    document.querySelectorAll('.pin-group').forEach(g => {
+      g.classList.toggle('visible', g.dataset.label === muscle);
+    });
+
+    // Legend
+    document.querySelectorAll('.legend-pill').forEach(l => {
+      l.classList.toggle('active', l.dataset.muscle === muscle);
+      if(l.dataset.muscle === muscle){
+        const sw = l.querySelector('.legend-swatch');
+        l.style.background = sw ? hexWithAlpha(sw.style.background, 0.15) : '';
+        l.style.borderColor = sw ? sw.style.background : '';
+      } else {
+        l.style.background = '';
+        l.style.borderColor = '';
+      }
+    });
+
+    // Info cards
+    hide(defaultPrompt); hide(discCard);
+    hideAllMuscleCards();
+    if(muscleCards[muscle]){
+      show(muscleCards[muscle]);
+      muscleCards[muscle].classList.add('highlighted');
+    }
+  }
+
+  function clearMuscleSelection(){
+    selectedMuscle = null;
+    document.querySelectorAll('.hotspot').forEach(h => {
+      h.classList.remove('dimmed','active');
+    });
+    document.querySelectorAll('.pin-group').forEach(g => g.classList.remove('visible'));
+    document.querySelectorAll('.legend-pill').forEach(l => {
+      l.classList.remove('active');
+      l.style.background = '';
+      l.style.borderColor = '';
+    });
+    hide(discCard);
+    hideAllMuscleCards();
+    if(currentTab === 'muscles'){
+      show(defaultPrompt);
+      stageHint.classList.remove('hidden');
+    }
+  }
+
+  function hideAllMuscleCards(){
+    Object.values(muscleCards).forEach(c => { c.style.display = 'none'; c.classList.remove('highlighted'); });
+  }
+
+  // ── HELPERS
+  function show(el){ if(el){ el.style.display=''; el.classList && el.classList.remove('hidden'); }}
+  function hide(el){ if(el){ el.style.display='none'; el.classList && el.classList.add('hidden'); }}
+  function hexWithAlpha(color, alpha){
+    // Returns rgba for legend background tint — simple pass-through
+    return color;
+  }
+
+  // ── INIT
+  viewBadge.textContent = 'Lateral View';
+  showMusclesView();
+
+})();
+</script>
+
+</body>
+</html>
