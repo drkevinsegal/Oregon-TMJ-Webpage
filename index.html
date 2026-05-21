@@ -734,9 +734,9 @@
     }
     .anatomy-card {
       border-radius: var(--radius); overflow: hidden;
-      position: relative; aspect-ratio: 1;
+      position: relative;
     }
-    .anatomy-card img { width: 100%; height: 100%; object-fit: cover; }
+    .anatomy-card img { width: 100%; height: auto; display: block; object-fit: unset; }
     .anatomy-label {
       position: absolute; bottom: 0; left: 0; right: 0;
       background: linear-gradient(to top, rgba(26,35,40,0.9), transparent);
@@ -1553,7 +1553,7 @@
 
     <!-- Anatomy images + interactive link -->
     <div class="fade-up" style="margin-top:56px;">
-      <div class="anatomy-pair" style="max-width:640px;margin:0 auto 20px;">
+      <div class="anatomy-pair" style="margin:0 auto 20px;">
         <div class="anatomy-card">
           <img src="Assets/images/tmj-disc-normal-anatomy.webp" alt="Normal TMJ joint — disc in correct position" onerror="this.style.display='none'">
           <div class="anatomy-label">Normal TMJ Joint</div>
