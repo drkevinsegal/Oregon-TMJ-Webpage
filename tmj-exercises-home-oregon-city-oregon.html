@@ -55,6 +55,19 @@
     .references a{color:var(--forest);text-decoration:underline;word-break:break-all;}
     footer{background:var(--near-black);padding:40px 28px;text-align:center;}footer p{font-size:0.8rem;color:rgba(255,255,255,0.35);}footer a{color:var(--ice);text-decoration:none;}
     @media(max-width:640px){.article-hero{padding:110px 20px 56px;}.article-body{padding:40px 20px 60px;}.article-cta{padding:36px 24px;}.btn-secondary{margin-left:0;margin-top:12px;display:block;}.exercise-block{padding:22px 20px;}}
+
+    /* Exercise images */
+    .exercise-img-wrap{margin-top:16px;cursor:zoom-in;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+    .exercise-img-wrap img{width:100%;height:auto;display:block;transition:transform 0.2s;}
+    .exercise-img-wrap:hover img{transform:scale(1.01);}
+    .exercise-img-caption{font-size:0.75rem;color:var(--light-text);text-align:center;padding:8px 12px;background:#fff;border-top:1px solid var(--border);}
+
+    /* Lightbox */
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:20px;cursor:zoom-out;}
+    .lightbox.open{display:flex;}
+    .lightbox img{max-width:100%;max-height:90vh;border-radius:var(--radius);box-shadow:0 8px 60px rgba(0,0,0,0.5);}
+    .lightbox-close{position:absolute;top:16px;right:20px;color:rgba(255,255,255,0.7);font-size:2rem;cursor:pointer;line-height:1;background:none;border:none;padding:4px 10px;}
+    .lightbox-close:hover{color:#fff;}
   </style>
   <script type="application/ld+json">
   {
@@ -192,6 +205,10 @@
   </div>
   <p>Place the tip of your tongue on the roof of your mouth (rest position). Keeping the tongue there, slowly open your jaw as far as you comfortably can without strain — this limits the opening to the rotation phase of jaw movement and keeps it in the midline. Close slowly. The tongue position acts as a guide and helps prevent the jaw from deviating or protrusive patterns developing during opening.</p>
   <p>A mirror is helpful here — you're looking to confirm the jaw opens straight down the midline rather than deviating left or right. If yours consistently deviates to one side, mention it to Dr. Segal — it's clinically significant information.</p>
+  <div class="exercise-img-wrap" onclick="openLightbox('Assets/images/jaw-opening-tmj-exercise.webp','Controlled Jaw Opening — Rotation Phase')" role="button" tabindex="0" aria-label="View larger image of controlled jaw opening exercise" onkeydown="if(event.key==='Enter')openLightbox('Assets/images/jaw-opening-tmj-exercise.webp','Controlled Jaw Opening — Rotation Phase')">
+    <img src="Assets/images/jaw-opening-tmj-exercise.webp" alt="Controlled jaw opening TMJ exercise — start and end position" width="1200" height="900" loading="lazy"/>
+    <div class="exercise-img-caption">Tap to enlarge — Controlled Jaw Opening (Rotation Phase)</div>
+  </div>
 </div>
 
 <div class="exercise-block">
@@ -229,6 +246,10 @@
   </div>
   <p>Sit or stand with good upright posture. Without tilting your head up or down, gently draw your chin straight back — as if making a "double chin." Hold 3–5 seconds. Release. This exercise activates the deep cervical flexor muscles, which are responsible for holding the head in a neutral position over the shoulders. In forward head posture, these muscles become weak and the suboccipital muscles at the base of the skull become chronically overloaded — a pattern that feeds directly into jaw tension and TMJ symptoms.</p>
   <p>Chin tucks are one of the most evidence-supported exercises for forward head posture correction and cervical muscle retraining. Done consistently, they reduce the mechanical loading pattern that underlies much of the neck-jaw tension cycle.</p>
+  <div class="exercise-img-wrap" onclick="openLightbox('Assets/images/neck-retraction-tmj-exercise.webp','Neck Retraction — Chin Tuck')" role="button" tabindex="0" aria-label="View larger image of neck retraction exercise" onkeydown="if(event.key==='Enter')openLightbox('Assets/images/neck-retraction-tmj-exercise.webp','Neck Retraction — Chin Tuck')">
+    <img src="Assets/images/neck-retraction-tmj-exercise.webp" alt="Neck retraction chin tuck TMJ exercise — start and end position" width="1200" height="900" loading="lazy"/>
+    <div class="exercise-img-caption">Tap to enlarge — Neck Retraction (Chin Tuck)</div>
+  </div>
 </div>
 
 <div class="exercise-block">
@@ -340,6 +361,29 @@ Because the jaw and neck are part of the same mechanical system. Research consis
   </div>
   <p id="ai-disclaimer" style="margin-top:8px">* Reviewed by Dr. Kevin Segal, Chiropractic Physician. This article is for informational purposes only and does not constitute medical advice. Content was generated with AI assistance. While we aim for accuracy, information may not always be current or complete. Please consult a qualified healthcare provider for diagnosis and treatment.</p>
 </footer>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close enlarged image">&times;</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+function openLightbox(src, alt){
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
+  img.alt = alt || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeLightbox();
+});
+</script>
 </body>
 </html>
