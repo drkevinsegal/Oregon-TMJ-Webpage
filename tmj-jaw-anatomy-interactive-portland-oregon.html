@@ -166,7 +166,7 @@
       .page-body{padding:40px 20px 60px;}
       .article-cta{padding:36px 24px;}
       .btn-secondary{margin-left:0;margin-top:12px;display:block;}
-      .view-toggle{display:none;}
+      .view-toggle{display:flex;flex-wrap:wrap;gap:4px;top:8px;right:8px;}
     }
   </style>
 
@@ -627,6 +627,7 @@
     show(discCard);
     if(type === 'normal'){
       viewBadge.textContent = 'Normal TMJ';
+      viewBadge.style.display = 'none';
       discTitle.textContent = 'Normal TMJ — Disc in Position';
       discBody.textContent = 'In a healthy joint, the biconcave articular disc sits centered over the mandibular condyle — between it and the temporal bone above. As the jaw opens, the condyle rotates then translates forward, and the disc moves with it throughout the full range of motion. The result is smooth, silent, pain-free jaw movement with no clicking.';
       discDot.style.background = '#5A8A6A';
@@ -634,6 +635,7 @@
       discPill.className = 'status-pill normal';
     } else {
       viewBadge.textContent = 'Disc Displacement';
+      viewBadge.style.display = 'none';
       discTitle.textContent = 'Anterior Disc Displacement';
       discBody.textContent = 'When the lateral pterygoid muscle — or trauma — pulls the disc forward out of its normal position, the condyle now sits behind the disc rather than under it. On jaw opening, the condyle must click over the posterior band of the disc, producing the characteristic TMJ pop. Without treatment, the disc can become permanently displaced, leading to restricted opening and accelerated joint wear.';
       discDot.style.background = '#E03030';
@@ -649,7 +651,7 @@
       this.classList.add('active');
       currentView = this.dataset.view;
       viewBadge.textContent = currentView === 'lateral' ? 'Lateral View' : 'Anterior View';
-      clearMuscleSelection();
+      viewBadge.style.display = '';
       showMusclesView();
     });
   });
