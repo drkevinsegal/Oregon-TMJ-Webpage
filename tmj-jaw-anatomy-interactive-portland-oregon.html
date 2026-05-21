@@ -85,7 +85,6 @@
     .pin-label-text{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;fill:white;dominant-baseline:middle;}
 
     /* VIEW INDICATOR */
-    .view-badge{position:absolute;top:14px;left:14px;background:rgba(10,16,20,0.8);border:1px solid rgba(168,216,232,0.25);border-radius:50px;padding:5px 14px;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(168,216,232,0.8);pointer-events:none;}
 
     /* STAGE HINT */
     .stage-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(10,16,20,0.75);border:1px solid rgba(168,216,232,0.2);border-radius:50px;padding:5px 16px;font-size:0.72rem;color:rgba(255,255,255,0.55);white-space:nowrap;pointer-events:none;transition:opacity 0.4s;}
@@ -389,9 +388,6 @@
           </svg>
         </div>
 
-                <!-- VIEW BADGE -->
-        <div class="view-badge" id="view-badge">Lateral View</div>
-
         <!-- VIEW TOGGLE (muscles tab only) -->
         <div class="view-toggle" id="view-toggle">
           <button class="view-toggle-btn active" data-view="lateral">Lateral</button>
@@ -554,7 +550,6 @@
   const imgDiscDisplaced = document.getElementById('img-disc-displaced');
   const hotspotLateral   = document.getElementById('hotspot-lateral');
   const hotspotAnterior  = document.getElementById('hotspot-anterior');
-  const viewBadge        = document.getElementById('view-badge');
   const viewToggle       = document.getElementById('view-toggle');
   const discTabControls  = document.getElementById('disc-tab-controls');
   const muscleLegend     = document.getElementById('muscle-legend');
@@ -626,16 +621,12 @@
     hide(defaultPrompt); hideAllMuscleCards();
     show(discCard);
     if(type === 'normal'){
-      viewBadge.textContent = 'Normal TMJ';
-      viewBadge.style.display = 'none';
       discTitle.textContent = 'Normal TMJ — Disc in Position';
       discBody.textContent = 'In a healthy joint, the biconcave articular disc sits centered over the mandibular condyle — between it and the temporal bone above. As the jaw opens, the condyle rotates then translates forward, and the disc moves with it throughout the full range of motion. The result is smooth, silent, pain-free jaw movement with no clicking.';
       discDot.style.background = '#5A8A6A';
       discStatusText.textContent = 'Normal — disc centered';
       discPill.className = 'status-pill normal';
     } else {
-      viewBadge.textContent = 'Disc Displacement';
-      viewBadge.style.display = 'none';
       discTitle.textContent = 'Anterior Disc Displacement';
       discBody.textContent = 'When the lateral pterygoid muscle — or trauma — pulls the disc forward out of its normal position, the condyle now sits behind the disc rather than under it. On jaw opening, the condyle must click over the posterior band of the disc, producing the characteristic TMJ pop. Without treatment, the disc can become permanently displaced, leading to restricted opening and accelerated joint wear.';
       discDot.style.background = '#E03030';
@@ -650,8 +641,6 @@
       document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
       currentView = this.dataset.view;
-      viewBadge.textContent = currentView === 'lateral' ? 'Lateral View' : 'Anterior View';
-      viewBadge.style.display = '';
       showMusclesView();
     });
   });
@@ -750,7 +739,7 @@
   }
 
   // ── INIT
-  viewBadge.textContent = 'Lateral View';
+
   showMusclesView();
 
 })();
