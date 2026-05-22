@@ -1158,12 +1158,12 @@
       .hero-trust-pill { display: none; }
       .hero-trust-pill-mobile { display: inline-flex; }
     }
-    @media (max-width: 640px) {
+    @media (max-width: 900px) {
       #assessment-feature > div > div { grid-template-columns: 1fr !important; }
-      #assessment-feature > div > div > div:first-child { padding: 36px 20px 28px !important; border-right: none !important; border-bottom: 1px solid rgba(168,216,232,0.12); }
-      #assessment-feature > div > div > div:last-child { padding: 28px 20px 36px !important; }
-      #assessment-feature ul { grid-template-columns: 1fr !important; }
-      .nav-links, .nav-phone, .nav-book { display: none !important; }
+      #assessment-feature > div > div > div:first-child { padding: 36px 20px 28px !important; border-right: none !important; border-bottom: none !important; }
+      #assessment-feature > div > div > div:last-child { display: none !important; }
+    }
+    @media (max-width: 640px) {
       .nav-right .btn { display: none; }
       .nav-call-pill { display: inline-flex !important; height: 33px; padding: 0 10px; font-size: 0.72rem; }
       .nav-text-pill { display: inline-flex !important; height: 33px; padding: 0 10px; font-size: 0.72rem; }
@@ -1477,8 +1477,8 @@
                aria-label="Book an appointment online via Jane App (opens in new window)">
               Book an Appointment <span aria-hidden="true">→</span>
             </a>
-            <a href="do-i-have-tmj-disorder.html" class="btn btn-outline-white"
-               aria-label="Take the free TMJ self-assessment">🔍 Do I Have TMJ? — Free Assessment</a>
+            <a href="#request-form" class="btn btn-outline-white"
+               aria-label="Jump to appointment request form">Request Information</a>
           </div>
           <div class="hero-stats fade-up delay-4">
             <div class="hero-stat">
@@ -1554,7 +1554,7 @@
             <span style="color:var(--ice);font-size:0.9rem;">→</span> Stress &amp; clenching
           </li>
         </ul>
-        <p style="font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:20px;line-height:1.6;">Based on validated DC/TMD clinical screening criteria · Sensitivity ≥0.86 · Specificity ≥0.98</p>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:20px;line-height:1.6;"></p>
       </div>
 
     </div>
