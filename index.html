@@ -1150,13 +1150,12 @@
       .call-text-short { display: inline !important; }
       .nav-call-pill-sm { display: none; }
       .nav-text-pill-sm { display: none; }
-      .nav-book { display: inline-flex !important; font-size: 0.75rem !important; padding: 0 12px !important; height: 33px !important; box-shadow: none !important; }
-      .nav-book-text-full { display: inline; }
-      .nav-book-text-short { display: none; }
+      .nav-book { display: none !important; }
       .nav-inner { height: 68px; }
       .nav-logo img { height: 50px; }
       .hero-trust-pill { display: none; }
       .hero-trust-pill-mobile { display: inline-flex; }
+      .mobile-menu { max-height: calc(100vh - 68px); overflow-y: auto; }
     }
     @media (max-width: 900px) {
       #assessment-feature > div > div { grid-template-columns: 1fr !important; }
@@ -1173,6 +1172,7 @@
       .nav-logo img { height: 50px; }
       .nav-book-text-full { display: none; }
       .nav-book-text-short { display: none; }
+      .mobile-menu { max-height: calc(100vh - 68px); overflow-y: auto; }
       .form-row { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .cta-contacts { flex-direction: column; align-items: center; gap: 16px; }
