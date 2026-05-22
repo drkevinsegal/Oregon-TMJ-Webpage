@@ -1127,6 +1127,8 @@
       padding: 24px 28px; z-index: 998;
       flex-direction: column; gap: 14px; box-shadow: var(--shadow-lg);
       max-height: calc(100vh - 72px); overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { font-size: 1rem; color: rgba(255,255,255,0.8); padding: 8px 0; border-bottom: 1px solid var(--border-dark); }
@@ -2668,12 +2670,14 @@
     mobileMenu.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
     hamburger.setAttribute('aria-label', 'Open navigation menu');
+    document.body.style.overflow = '';
   }
 
   hamburger.addEventListener('click', () => {
     const isOpen = mobileMenu.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', isOpen);
     hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
   // Close menu on link click
