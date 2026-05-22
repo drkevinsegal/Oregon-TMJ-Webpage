@@ -1,11 +1,7 @@
 # robots.txt — Oregon TMJ
 # oregontmj.com
-#
-# PRE-LAUNCH: Site not yet ready for indexing
-# When ready to go live, replace Disallow: / with Allow: /
-# and uncomment the Sitemap line below
-#
-User-agent: *
-Disallow: /
 
-# Sitemap: https://www.oregontmj.com/sitemap.xml
+User-agent: *
+Allow: /
+
+Sitemap: https://www.oregontmj.com/sitemap.xml
