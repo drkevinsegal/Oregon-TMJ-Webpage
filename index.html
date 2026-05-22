@@ -1122,13 +1122,16 @@
        MOBILE MENU
     ════════════════════════════════════════════════ */
     .mobile-menu {
-      display: none; position: fixed; top: 72px; left: 0; right: 0;
+      display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
       background: var(--slate-deep); border-bottom: 1px solid var(--border-dark);
       padding: 24px 28px; z-index: 998;
       flex-direction: column; gap: 14px; box-shadow: var(--shadow-lg);
-      max-height: calc(100vh - 72px); overflow-y: auto;
+      height: calc(100vh - 72px);
+      max-height: calc(100vh - 72px);
+      overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
+      touch-action: pan-y;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { font-size: 1rem; color: rgba(255,255,255,0.8); padding: 8px 0; border-bottom: 1px solid var(--border-dark); }
