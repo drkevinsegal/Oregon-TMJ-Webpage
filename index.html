@@ -1123,17 +1123,19 @@
     ════════════════════════════════════════════════ */
     .mobile-menu {
       display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
-      background: var(--slate-deep); border-bottom: 1px solid var(--border-dark);
-      padding: 24px 28px; z-index: 998;
-      flex-direction: column; gap: 14px; box-shadow: var(--shadow-lg);
-      height: calc(100vh - 72px);
-      max-height: calc(100vh - 72px);
-      overflow-y: scroll;
+      background: var(--slate-deep);
+      z-index: 998;
+      box-shadow: var(--shadow-lg);
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu-inner {
+      display: flex; flex-direction: column; gap: 14px;
+      padding: 24px 28px 40px;
+      height: 100%; overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
       touch-action: pan-y;
     }
-    .mobile-menu.open { display: flex; }
     .mobile-menu a { font-size: 1rem; color: rgba(255,255,255,0.8); padding: 8px 0; border-bottom: 1px solid var(--border-dark); }
     .mobile-menu .btn { width: 100%; text-align: center; justify-content: center; margin-top: 6px; }
 
@@ -1328,18 +1330,20 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation menu">
-  <a href="#office">Contact / Location</a>
-  <a href="#approach">Our Approach</a>
-  <a href="#expect">What to Expect</a>
-  <a href="#insurance">Insurance</a>
-  <a href="#about">About</a>
-  <a href="#faq">FAQ</a>
-  <a href="#articles">Articles</a>
-  <a href="tmj-exercises-home-oregon-city-oregon.html">Self-Care &amp; Exercises</a>
-  <a href="tmj-jaw-anatomy-interactive-portland-oregon.html">Explore Your Jaw Anatomy</a>
-  <a href="do-i-have-tmj-disorder.html">Do I Have TMJ? — Self-Assessment</a>
-  <a href="sms:5037883800" class="btn btn-outline-white"><span aria-hidden="true">💬</span> Text Us</a>
-  <a href="https://backinshapechiro.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Appointment</a>
+  <div class="mobile-menu-inner">
+    <a href="#office">Contact / Location</a>
+    <a href="#approach">Our Approach</a>
+    <a href="#expect">What to Expect</a>
+    <a href="#insurance">Insurance</a>
+    <a href="#about">About</a>
+    <a href="#faq">FAQ</a>
+    <a href="#articles">Articles</a>
+    <a href="tmj-exercises-home-oregon-city-oregon.html">Self-Care &amp; Exercises</a>
+    <a href="tmj-jaw-anatomy-interactive-portland-oregon.html">Explore Your Jaw Anatomy</a>
+    <a href="do-i-have-tmj-disorder.html">Do I Have TMJ? — Self-Assessment</a>
+    <a href="sms:5037883800" class="btn btn-outline-white"><span aria-hidden="true">💬</span> Text Us</a>
+    <a href="https://backinshapechiro.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Appointment</a>
+  </div>
 </div>
 
 <main id="main-content">
