@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Interactive TMJ Anatomy — Explore Your Jaw | Oregon TMJ</title>
+  <title>Interactive TMJ Anatomy — Explore Your Jaw | Oregon TMJ — Milwaukie, Oregon</title>
   <meta name="description" content="Explore an interactive anatomical model of the jaw, TMJ disc, and surrounding muscles. See how the jaw opens and closes, what disc displacement looks like, and identify the muscles involved in TMJ disorder — Oregon TMJ, Milwaukie, Oregon." />
   <link rel="canonical" href="https://www.oregontmj.com/tmj-jaw-anatomy-interactive-portland-oregon.html" />
-  <meta property="og:title" content="Interactive TMJ Anatomy Explorer | Oregon TMJ" />
+  <meta property="og:title" content="Interactive TMJ Anatomy Explorer | Oregon TMJ — Milwaukie, Oregon" />
   <meta property="og:description" content="See inside your jaw — an interactive anatomical model showing the TMJ disc, jaw muscles, and what happens with disc displacement." />
   <meta property="og:url" content="https://www.oregontmj.com/tmj-jaw-anatomy-interactive-portland-oregon.html" />
   <meta property="og:type" content="website" />
@@ -85,6 +85,7 @@
     .pin-label-text{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;fill:white;dominant-baseline:middle;}
 
     /* VIEW INDICATOR */
+    .view-badge{position:absolute;top:14px;left:14px;background:rgba(10,16,20,0.8);border:1px solid rgba(168,216,232,0.25);border-radius:50px;padding:5px 14px;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(168,216,232,0.8);pointer-events:none;}
 
     /* STAGE HINT */
     .stage-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(10,16,20,0.75);border:1px solid rgba(168,216,232,0.2);border-radius:50px;padding:5px 16px;font-size:0.72rem;color:rgba(255,255,255,0.55);white-space:nowrap;pointer-events:none;transition:opacity 0.4s;}
@@ -165,7 +166,7 @@
       .page-body{padding:40px 20px 60px;}
       .article-cta{padding:36px 24px;}
       .btn-secondary{margin-left:0;margin-top:12px;display:block;}
-      .view-toggle{display:flex;flex-wrap:wrap;gap:4px;top:8px;right:8px;}
+      .view-toggle{display:none;}
     }
   </style>
 
@@ -237,63 +238,64 @@
         <div class="hotspot-layer" id="hotspot-lateral">
           <svg viewBox="0 0 1536 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 
-            <!-- TEMPORALIS — large fan shape covering most of temporal region upper right -->
+            <!-- TEMPORALIS — large fan-shaped muscle upper right of image -->
             <g class="hotspot" data-muscle="temporalis" tabindex="0" role="button" aria-label="Temporalis muscle">
               <path class="hotspot-fill" fill="#7CB9E8"
-                d="M830 80 Q920 60 1040 75 Q1140 92 1200 155 Q1250 210 1240 290 Q1225 365 1175 410 Q1125 448 1065 448 Q1005 445 960 415 Q915 382 890 330 Q860 268 848 200 Q838 140 830 80 Z"/>
+                d="M780 60 Q900 55 980 90 Q1060 130 1100 190 Q1130 240 1120 300 Q1105 355 1070 385 Q1030 410 990 405 Q950 398 920 370 Q890 340 870 295 Q845 245 830 190 Q815 140 790 100 Z"/>
+              <!-- Label pin -->
               <g class="pin-group" data-label="temporalis">
-                <line class="pin-line" x1="1060" y1="260" x2="900" y2="210"/>
-                <circle class="pin-circle" cx="1060" cy="260" r="7"/>
-                <rect class="pin-label-bg" x="710" y="192" width="185" height="30" rx="5"/>
-                <text class="pin-label-text" x="803" y="207" text-anchor="middle">TEMPORALIS</text>
+                <line class="pin-line" x1="960" y1="230" x2="850" y2="170"/>
+                <circle class="pin-circle" cx="960" cy="230" r="7"/>
+                <rect class="pin-label-bg" x="660" y="148" width="185" height="30" rx="5"/>
+                <text class="pin-label-text" x="752" y="163" text-anchor="middle">TEMPORALIS</text>
               </g>
             </g>
 
-            <!-- MASSETER — large diagonal red muscle cheekbone to jaw angle -->
+            <!-- MASSETER — thick diagonal muscle cheekbone to jaw angle -->
             <g class="hotspot" data-muscle="masseter" tabindex="0" role="button" aria-label="Masseter muscle">
               <path class="hotspot-fill" fill="#E8A87C"
-                d="M390 490 Q460 465 545 468 Q615 472 665 510 Q705 545 715 600 Q722 650 700 695 Q675 738 625 758 Q572 775 518 762 Q462 748 425 710 Q388 670 378 615 Q368 558 390 490 Z"/>
+                d="M310 480 Q360 455 430 450 Q500 448 555 470 Q600 492 620 540 Q638 588 625 640 Q610 690 575 720 Q535 748 485 752 Q430 754 385 730 Q340 705 315 660 Q290 612 292 560 Z"/>
               <g class="pin-group" data-label="masseter">
-                <line class="pin-line" x1="545" y1="615" x2="355" y2="590"/>
-                <circle class="pin-circle" cx="545" cy="615" r="7"/>
-                <rect class="pin-label-bg" x="155" y="572" width="196" height="30" rx="5"/>
-                <text class="pin-label-text" x="253" y="587" text-anchor="middle">MASSETER</text>
+                <line class="pin-line" x1="465" y1="590" x2="300" y2="560"/>
+                <circle class="pin-circle" cx="465" cy="590" r="7"/>
+                <rect class="pin-label-bg" x="108" y="538" width="190" height="30" rx="5"/>
+                <text class="pin-label-text" x="203" y="553" text-anchor="middle">MASSETER</text>
               </g>
             </g>
 
-            <!-- LATERAL PTERYGOID — small silver structure at TMJ joint area -->
+            <!-- LATERAL PTERYGOID — small structure at TMJ joint area -->
             <g class="hotspot" data-muscle="lateral-pterygoid" tabindex="0" role="button" aria-label="Lateral pterygoid muscle">
               <path class="hotspot-fill" fill="#7CE8A8"
-                d="M798 430 Q838 415 875 422 Q905 430 915 455 Q922 478 908 500 Q890 520 860 524 Q828 526 806 508 Q782 488 782 462 Z"/>
+                d="M680 410 Q720 400 760 408 Q790 418 800 440 Q808 460 795 478 Q778 494 748 496 Q718 496 698 480 Q678 462 676 440 Z"/>
               <g class="pin-group" data-label="lateral-pterygoid">
-                <line class="pin-line" x1="852" y1="468" x2="1010" y2="500"/>
-                <circle class="pin-circle" cx="852" cy="468" r="7"/>
-                <rect class="pin-label-bg" x="1006" y="482" width="234" height="30" rx="5"/>
-                <text class="pin-label-text" x="1123" y="497" text-anchor="middle">LATERAL PTERYGOID</text>
+                <line class="pin-line" x1="738" y1="448" x2="880" y2="490"/>
+                <circle class="pin-circle" cx="738" cy="448" r="7"/>
+                <rect class="pin-label-bg" x="876" y="472" width="230" height="30" rx="5"/>
+                <text class="pin-label-text" x="991" y="487" text-anchor="middle">LATERAL PTERYGOID</text>
               </g>
             </g>
 
-            <!-- MEDIAL PTERYGOID — deep muscle below/behind masseter lower region -->
-            <g class="hotspot" data-muscle="medial-pterygoid" tabindex="0" role="button" aria-label="Medial pterygoid muscle">
-              <path class="hotspot-fill" fill="#A87CE8"
-                d="M668 680 Q710 662 752 668 Q785 676 796 702 Q804 726 790 748 Q772 768 742 772 Q710 774 688 756 Q664 736 664 706 Z"/>
-              <g class="pin-group" data-label="medial-pterygoid">
-                <line class="pin-line" x1="728" y1="716" x2="900" y2="758"/>
-                <circle class="pin-circle" cx="728" cy="716" r="7"/>
-                <rect class="pin-label-bg" x="896" y="740" width="234" height="30" rx="5"/>
-                <text class="pin-label-text" x="1013" y="755" text-anchor="middle">MEDIAL PTERYGOID</text>
-              </g>
-            </g>
-
-            <!-- DIGASTRIC — long tendon below jaw running posteriorly -->
+            <!-- DIGASTRIC — long tendon/muscle running inferiorly below jaw -->
             <g class="hotspot" data-muscle="digastric" tabindex="0" role="button" aria-label="Digastric muscle">
               <path class="hotspot-fill" fill="#E87C9A"
-                d="M580 830 Q640 808 710 812 Q760 818 785 848 Q805 874 795 902 Q780 928 748 936 Q712 942 678 930 Q642 916 622 888 Q600 858 580 830 Z"/>
+                d="M560 760 Q590 750 630 760 Q660 772 670 800 Q678 825 665 848 Q648 868 620 872 Q592 874 572 856 Q552 836 552 808 Q552 782 560 760Z"/>
               <g class="pin-group" data-label="digastric">
-                <line class="pin-line" x1="682" y1="872" x2="840" y2="900"/>
-                <circle class="pin-circle" cx="682" cy="872" r="7"/>
-                <rect class="pin-label-bg" x="836" y="882" width="168" height="30" rx="5"/>
-                <text class="pin-label-text" x="920" y="897" text-anchor="middle">DIGASTRIC</text>
+                <line class="pin-line" x1="610" y1="815" x2="760" y2="870"/>
+                <circle class="pin-circle" cx="610" cy="815" r="7"/>
+                <rect class="pin-label-bg" x="756" y="852" width="165" height="30" rx="5"/>
+                <text class="pin-label-text" x="839" y="867" text-anchor="middle">DIGASTRIC</text>
+              </g>
+            </g>
+
+            <!-- MEDIAL PTERYGOID — deep, partially visible medial to masseter -->
+            <g class="hotspot" data-muscle="medial-pterygoid" tabindex="0" role="button" aria-label="Medial pterygoid muscle">
+              <path class="hotspot-fill" fill="#A87CE8"
+                d="M620 630 Q658 618 695 628 Q720 638 728 665 Q733 690 718 710 Q700 728 672 730 Q644 730 626 712 Q608 692 610 665 Z"/>
+              <g class="pin-group" data-label="medial-pterygoid">
+                <line class="pin-line" x1="668" y1="672" x2="820" y2="720"/>
+                <circle class="pin-circle" cx="668" cy="672" r="7"/>
+                <rect class="pin-label-bg" x="816" y="703" width="230" height="30" rx="5"/>
+                <text class="pin-label-text" x="931" y="718" text-anchor="middle">MEDIAL PTERYGOID</text>
               </g>
             </g>
 
@@ -303,90 +305,54 @@
         <!-- HOTSPOT OVERLAY (muscles anterior view) -->
         <div class="hotspot-layer hidden" id="hotspot-anterior">
           <svg viewBox="0 0 1536 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
-            <!-- TEMPORALIS left — temple area on skull left side -->
+            <!-- TEMPORALIS left -->
             <g class="hotspot" data-muscle="temporalis" tabindex="0" role="button" aria-label="Temporalis muscle left">
               <path class="hotspot-fill" fill="#7CB9E8"
-                d="M268 148 Q320 128 378 138 Q418 150 430 192 Q438 228 420 260 Q400 290 365 298 Q328 304 298 284 Q265 262 256 225 Q248 188 268 148 Z"/>
+                d="M148 130 Q210 110 270 125 Q310 140 320 185 Q325 225 305 255 Q282 280 248 280 Q212 278 188 255 Q160 228 152 190 Z"/>
             </g>
-            <!-- TEMPORALIS right — temple area on skull right side -->
+            <!-- TEMPORALIS right -->
             <g class="hotspot" data-muscle="temporalis" tabindex="0" role="button" aria-label="Temporalis muscle right">
               <path class="hotspot-fill" fill="#7CB9E8"
-                d="M1158 148 Q1210 128 1268 138 Q1308 150 1320 192 Q1328 228 1310 260 Q1290 290 1255 298 Q1218 304 1188 284 Q1155 262 1146 225 Q1138 188 1158 148 Z"/>
+                d="M1265 130 Q1328 110 1390 125 Q1428 140 1438 185 Q1440 225 1420 255 Q1396 280 1360 280 Q1325 278 1300 255 Q1274 228 1266 190 Z"/>
               <g class="pin-group" data-label="temporalis">
-                <line class="pin-line" x1="1230" y1="218" x2="1090" y2="200"/>
-                <circle class="pin-circle" cx="1230" cy="218" r="7"/>
-                <rect class="pin-label-bg" x="896" y="182" width="190" height="30" rx="5"/>
-                <text class="pin-label-text" x="991" y="197" text-anchor="middle">TEMPORALIS</text>
+                <line class="pin-line" x1="1340" y1="200" x2="1200" y2="180"/>
+                <circle class="pin-circle" cx="1340" cy="200" r="7"/>
+                <rect class="pin-label-bg" x="1002" y="160" width="195" height="30" rx="5"/>
+                <text class="pin-label-text" x="1100" y="175" text-anchor="middle">TEMPORALIS</text>
               </g>
             </g>
-
-            <!-- MASSETER left — jaw angle left, large red muscle -->
+            <!-- MASSETER left -->
             <g class="hotspot" data-muscle="masseter" tabindex="0" role="button" aria-label="Masseter muscle left">
               <path class="hotspot-fill" fill="#E8A87C"
-                d="M295 548 Q340 528 395 532 Q438 538 460 572 Q478 604 468 645 Q456 682 422 700 Q386 716 350 706 Q312 694 292 660 Q272 624 275 585 Z"/>
+                d="M190 490 Q240 470 295 475 Q340 482 365 520 Q385 555 375 600 Q362 640 325 660 Q285 678 248 665 Q210 650 192 612 Q175 572 178 530 Z"/>
               <g class="pin-group" data-label="masseter">
-                <line class="pin-line" x1="376" y1="616" x2="228" y2="608"/>
-                <circle class="pin-circle" cx="376" cy="616" r="7"/>
-                <rect class="pin-label-bg" x="100" y="590" width="126" height="30" rx="5"/>
-                <text class="pin-label-text" x="163" y="605" text-anchor="middle">MASSETER</text>
+                <line class="pin-line" x1="278" y1="570" x2="130" y2="560"/>
+                <circle class="pin-circle" cx="278" cy="570" r="7"/>
+                <rect class="pin-label-bg" x="10" y="542" width="120" height="30" rx="5"/>
+                <text class="pin-label-text" x="70" y="557" text-anchor="middle">MASSETER</text>
               </g>
             </g>
-
             <!-- MASSETER right -->
             <g class="hotspot" data-muscle="masseter" tabindex="0" role="button" aria-label="Masseter muscle right">
               <path class="hotspot-fill" fill="#E8A87C"
-                d="M1076 548 Q1120 528 1175 532 Q1218 538 1240 572 Q1258 604 1248 645 Q1236 682 1202 700 Q1166 716 1130 706 Q1092 694 1072 660 Q1052 624 1055 585 Z"/>
+                d="M1170 490 Q1220 470 1270 475 Q1318 482 1342 520 Q1362 555 1350 600 Q1336 640 1298 660 Q1258 678 1222 665 Q1184 650 1166 612 Q1148 572 1152 530 Z"/>
             </g>
-
-            <!-- LATERAL PTERYGOID left -->
-            <g class="hotspot" data-muscle="lateral-pterygoid" tabindex="0" role="button" aria-label="Lateral pterygoid muscle left">
-              <path class="hotspot-fill" fill="#7CE8A8"
-                d="M258 448 Q290 434 325 440 Q350 448 360 470 Q366 490 354 508 Q338 524 312 526 Q284 526 266 508 Q248 490 250 466 Z"/>
-            </g>
-            <!-- LATERAL PTERYGOID right -->
-            <g class="hotspot" data-muscle="lateral-pterygoid" tabindex="0" role="button" aria-label="Lateral pterygoid muscle right">
-              <path class="hotspot-fill" fill="#7CE8A8"
-                d="M1178 448 Q1210 434 1245 440 Q1270 448 1280 470 Q1286 490 1274 508 Q1258 524 1232 526 Q1204 526 1186 508 Q1168 490 1170 466 Z"/>
-              <g class="pin-group" data-label="lateral-pterygoid">
-                <line class="pin-line" x1="1228" y1="480" x2="1100" y2="470"/>
-                <circle class="pin-circle" cx="1228" cy="480" r="7"/>
-                <rect class="pin-label-bg" x="860" y="452" width="236" height="30" rx="5"/>
-                <text class="pin-label-text" x="978" y="467" text-anchor="middle">LATERAL PTERYGOID</text>
-              </g>
-            </g>
-
-            <!-- MEDIAL PTERYGOID left -->
-            <g class="hotspot" data-muscle="medial-pterygoid" tabindex="0" role="button" aria-label="Medial pterygoid muscle left">
-              <path class="hotspot-fill" fill="#A87CE8"
-                d="M330 698 Q368 680 408 686 Q438 694 448 718 Q456 740 442 760 Q424 778 396 780 Q366 780 346 762 Q326 742 328 718 Z"/>
-            </g>
-            <!-- MEDIAL PTERYGOID right -->
-            <g class="hotspot" data-muscle="medial-pterygoid" tabindex="0" role="button" aria-label="Medial pterygoid muscle right">
-              <path class="hotspot-fill" fill="#A87CE8"
-                d="M1090 698 Q1128 680 1168 686 Q1198 694 1208 718 Q1216 740 1202 760 Q1184 778 1156 780 Q1126 780 1106 762 Q1086 742 1088 718 Z"/>
-              <g class="pin-group" data-label="medial-pterygoid">
-                <line class="pin-line" x1="1148" y1="732" x2="1020" y2="750"/>
-                <circle class="pin-circle" cx="1148" cy="732" r="7"/>
-                <rect class="pin-label-bg" x="778" y="732" width="238" height="30" rx="5"/>
-                <text class="pin-label-text" x="897" y="747" text-anchor="middle">MEDIAL PTERYGOID</text>
-              </g>
-            </g>
-
-            <!-- DIGASTRIC — below chin center -->
+            <!-- DIGASTRIC -->
             <g class="hotspot" data-muscle="digastric" tabindex="0" role="button" aria-label="Digastric muscle">
               <path class="hotspot-fill" fill="#E87C9A"
-                d="M628 858 Q688 838 758 842 Q808 848 828 876 Q844 900 832 926 Q816 950 778 956 Q736 960 700 948 Q660 934 642 908 Q624 880 628 858 Z"/>
+                d="M660 870 Q720 855 790 860 Q840 866 860 895 Q875 920 860 945 Q840 965 800 968 Q755 970 720 958 Q682 944 666 918 Q652 892 660 870Z"/>
               <g class="pin-group" data-label="digastric">
-                <line class="pin-line" x1="728" y1="896" x2="880" y2="918"/>
-                <circle class="pin-circle" cx="728" cy="896" r="7"/>
-                <rect class="pin-label-bg" x="876" y="900" width="168" height="30" rx="5"/>
-                <text class="pin-label-text" x="960" y="915" text-anchor="middle">DIGASTRIC</text>
+                <line class="pin-line" x1="762" y1="912" x2="900" y2="940"/>
+                <circle class="pin-circle" cx="762" cy="912" r="7"/>
+                <rect class="pin-label-bg" x="896" y="922" width="165" height="30" rx="5"/>
+                <text class="pin-label-text" x="979" y="937" text-anchor="middle">DIGASTRIC</text>
               </g>
             </g>
-
           </svg>
         </div>
+
+        <!-- VIEW BADGE -->
+        <div class="view-badge" id="view-badge">Lateral View</div>
 
         <!-- VIEW TOGGLE (muscles tab only) -->
         <div class="view-toggle" id="view-toggle">
@@ -550,6 +516,7 @@
   const imgDiscDisplaced = document.getElementById('img-disc-displaced');
   const hotspotLateral   = document.getElementById('hotspot-lateral');
   const hotspotAnterior  = document.getElementById('hotspot-anterior');
+  const viewBadge        = document.getElementById('view-badge');
   const viewToggle       = document.getElementById('view-toggle');
   const discTabControls  = document.getElementById('disc-tab-controls');
   const muscleLegend     = document.getElementById('muscle-legend');
@@ -621,12 +588,14 @@
     hide(defaultPrompt); hideAllMuscleCards();
     show(discCard);
     if(type === 'normal'){
+      viewBadge.textContent = 'Normal TMJ';
       discTitle.textContent = 'Normal TMJ — Disc in Position';
       discBody.textContent = 'In a healthy joint, the biconcave articular disc sits centered over the mandibular condyle — between it and the temporal bone above. As the jaw opens, the condyle rotates then translates forward, and the disc moves with it throughout the full range of motion. The result is smooth, silent, pain-free jaw movement with no clicking.';
       discDot.style.background = '#5A8A6A';
       discStatusText.textContent = 'Normal — disc centered';
       discPill.className = 'status-pill normal';
     } else {
+      viewBadge.textContent = 'Disc Displacement';
       discTitle.textContent = 'Anterior Disc Displacement';
       discBody.textContent = 'When the lateral pterygoid muscle — or trauma — pulls the disc forward out of its normal position, the condyle now sits behind the disc rather than under it. On jaw opening, the condyle must click over the posterior band of the disc, producing the characteristic TMJ pop. Without treatment, the disc can become permanently displaced, leading to restricted opening and accelerated joint wear.';
       discDot.style.background = '#E03030';
@@ -641,6 +610,8 @@
       document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
       currentView = this.dataset.view;
+      viewBadge.textContent = currentView === 'lateral' ? 'Lateral View' : 'Anterior View';
+      clearMuscleSelection();
       showMusclesView();
     });
   });
@@ -739,7 +710,7 @@
   }
 
   // ── INIT
-
+  viewBadge.textContent = 'Lateral View';
   showMusclesView();
 
 })();

@@ -1159,6 +1159,10 @@
       .hero-trust-pill-mobile { display: inline-flex; }
     }
     @media (max-width: 640px) {
+      #assessment-feature > div > div { grid-template-columns: 1fr !important; }
+      #assessment-feature > div > div > div:first-child { padding: 36px 20px 28px !important; border-right: none !important; border-bottom: 1px solid rgba(168,216,232,0.12); }
+      #assessment-feature > div > div > div:last-child { padding: 28px 20px 36px !important; }
+      #assessment-feature ul { grid-template-columns: 1fr !important; }
       .nav-links, .nav-phone, .nav-book { display: none !important; }
       .nav-right .btn { display: none; }
       .nav-call-pill { display: inline-flex !important; height: 33px; padding: 0 10px; font-size: 0.72rem; }
@@ -1327,6 +1331,7 @@
   <a href="#articles">Articles</a>
   <a href="tmj-exercises-home-oregon-city-oregon.html">Self-Care &amp; Exercises</a>
   <a href="tmj-jaw-anatomy-interactive-portland-oregon.html">Explore Your Jaw Anatomy</a>
+  <a href="do-i-have-tmj-disorder.html">Do I Have TMJ? — Self-Assessment</a>
   <a href="sms:5037883800" class="btn btn-outline-white"><span aria-hidden="true">💬</span> Text Us</a>
   <a href="https://backinshapechiro.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Appointment</a>
 </div>
@@ -1472,8 +1477,8 @@
                aria-label="Book an appointment online via Jane App (opens in new window)">
               Book an Appointment <span aria-hidden="true">→</span>
             </a>
-            <a href="#request-form" class="btn btn-outline-white"
-               aria-label="Jump to appointment request form">Request Information</a>
+            <a href="do-i-have-tmj-disorder.html" class="btn btn-outline-white"
+               aria-label="Take the free TMJ self-assessment">🔍 Do I Have TMJ? — Free Assessment</a>
           </div>
           <div class="hero-stats fade-up delay-4">
             <div class="hero-stat">
@@ -1491,6 +1496,67 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ ASSESSMENT FEATURE ═══════════════════════ -->
+<section id="assessment-feature" aria-label="TMJ Self-Assessment Tool" style="background:var(--near-black);padding:0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 28px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:200px;">
+
+      <!-- LEFT — TEXT -->
+      <div style="padding:52px 48px 52px 0;border-right:1px solid rgba(168,216,232,0.12);">
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--forest);background:rgba(90,138,106,0.12);border:1px solid rgba(90,138,106,0.25);border-radius:50px;padding:5px 14px;margin-bottom:18px;">
+          Free Tool — No Email Required
+        </div>
+        <h2 style="font-family:'Lora',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:500;color:#fff;line-height:1.3;margin-bottom:12px;">
+          Do I Have TMJ Disorder?
+        </h2>
+        <p style="font-size:0.95rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:28px;max-width:380px;">
+          Not sure if your jaw pain, headaches, or ear symptoms are connected? Answer 10 evidence-based questions and get a personalized result in about 2 minutes.
+        </p>
+        <a href="do-i-have-tmj-disorder.html"
+           style="display:inline-flex;align-items:center;gap:10px;background:var(--ice);color:var(--near-black);padding:14px 28px;border-radius:50px;font-weight:700;font-size:0.95rem;text-decoration:none;transition:all 0.2s;"
+           onmouseover="this.style.background='#fff';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='var(--ice)';this.style.transform='translateY(0)'">
+          🔍 Take the Free Assessment →
+        </a>
+      </div>
+
+      <!-- RIGHT — WHAT IT COVERS -->
+      <div style="padding:52px 0 52px 48px;">
+        <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:18px;">The assessment covers</p>
+        <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;">
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:rgba(255,255,255,0.65);">
+            <span style="color:var(--ice);font-size:0.9rem;">→</span> Jaw pain &amp; soreness
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:rgba(255,255,255,0.65);">
+            <span style="color:var(--ice);font-size:0.9rem;">→</span> Clicking &amp; popping
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:rgba(255,255,255,0.65);">
+            <span style="color:var(--ice);font-size:0.9rem;">→</span> Limited jaw opening
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:rgba(255,255,255,0.65);">
+            <span style="color:var(--ice);font-size:0.9rem;">→</span> Morning stiffness
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:rgba(255,255,255,0.65);">
+            <span style="color:var(--ice);font-size:0.9rem;">→</span> Headaches &amp; temples
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:rgba(255,255,255,0.65);">
+            <span style="color:var(--ice);font-size:0.9rem;">→</span> Ear pain &amp; pressure
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:rgba(255,255,255,0.65);">
+            <span style="color:var(--ice);font-size:0.9rem;">→</span> Neck pain connection
+          </li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:rgba(255,255,255,0.65);">
+            <span style="color:var(--ice);font-size:0.9rem;">→</span> Stress &amp; clenching
+          </li>
+        </ul>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:20px;line-height:1.6;">Based on validated DC/TMD clinical screening criteria · Sensitivity ≥0.86 · Specificity ≥0.98</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -2134,6 +2200,30 @@
           <p>A clear, honest guide to night guards — their real benefits for bruxism and tooth protection, their limitations, and what to consider if yours hasn't brought lasting relief.</p>
           <span class="article-read-time">🕐 7 min read</span>
           <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+        <a href="tmj-jaw-locking-portland-oregon.html" class="article-card">
+          <span class="article-tag">Symptoms &amp; Causes</span>
+          <h3>TMJ Jaw Locking — Why Your Jaw Gets Stuck and What to Do</h3>
+          <p>Jaw locking is one of the most alarming TMJ symptoms. Learn what's actually happening with the disc, what the research says about treatment, and why most cases don't need surgery.</p>
+          <span class="article-read-time">🕐 7 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+        <a href="tmj-stress-anxiety-clackamas-oregon.html" class="article-card">
+          <span class="article-tag">Symptoms &amp; Causes</span>
+          <h3>TMJ and Stress — Why Anxiety Makes Jaw Pain Worse</h3>
+          <p>Stress doesn't just feel bad — it physically changes how your jaw muscles behave, driving clenching and TMJ pain in a self-reinforcing cycle. Learn the biology and how to interrupt it.</p>
+          <span class="article-read-time">🕐 7 min read</span>
+          <span class="article-link-arrow">Read Article →</span>
+        </a>
+
+        <a href="do-i-have-tmj-disorder.html" class="article-card">
+          <span class="article-tag">Free Tool</span>
+          <h3>Do I Have TMJ Disorder? — Free Self-Assessment</h3>
+          <p>Answer 10 evidence-based questions to find out whether your symptoms match TMJ disorder. Based on validated clinical criteria. Instant results, no email required.</p>
+          <span class="article-read-time">⏱ 2 min assessment</span>
+          <span class="article-link-arrow">Take the Assessment →</span>
         </a>
 
       </div>
