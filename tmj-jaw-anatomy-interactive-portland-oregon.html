@@ -70,7 +70,7 @@
     /* Muscle hotspot regions — pointer-events on */
     .hotspot{cursor:pointer;pointer-events:all;transition:opacity 0.2s;}
     .hotspot:focus{outline:2px solid var(--ice);outline-offset:2px;}
-    .hotspot-fill{opacity:0;transition:opacity 0.25s;}
+    .hotspot-fill{opacity:0.5;transition:opacity 0.25s;}
     .hotspot:hover .hotspot-fill{opacity:0.35;}
     .hotspot.active .hotspot-fill{opacity:0.55;}
     .hotspot.dimmed .hotspot-fill{opacity:0;}
@@ -241,25 +241,25 @@
             <!-- TEMPORALIS — large fan-shaped muscle upper right of image -->
             <g class="hotspot" data-muscle="temporalis" tabindex="0" role="button" aria-label="Temporalis muscle">
               <path class="hotspot-fill" fill="#7CB9E8"
-                d="M720 90 Q850 55 1010 65 Q1160 75 1280 140 Q1380 200 1410 310 Q1435 400 1400 470 Q1365 535 1280 555 Q1195 572 1110 540 Q1020 505 950 440 Q870 365 810 280 Q760 205 730 145 Q715 110 720 90 Z"/>
+                d="M620 80 Q740 55 880 58 Q1000 62 1060 90 Q1100 115 1070 200 Q1045 270 990 340 Q940 400 880 420 Q820 438 760 410 Q700 380 665 310 Q630 240 600 165 Q582 115 620 80 Z"/>
               <!-- Label pin -->
               <g class="pin-group" data-label="temporalis">
-                <line class="pin-line" x1="1060" y1="280" x2="870" y2="185"/>
-                <circle class="pin-circle" cx="1060" cy="280" r="7"/>
-                <rect class="pin-label-bg" x="668" y="163" width="185" height="30" rx="5"/>
-                <text class="pin-label-text" x="760" y="183" text-anchor="middle">TEMPORALIS</text>
+                <line class="pin-line" x1="830" y1="250" x2="680" y2="165"/>
+                <circle class="pin-circle" cx="830" cy="250" r="7"/>
+                <rect class="pin-label-bg" x="486" y="143" width="185" height="30" rx="5"/>
+                <text class="pin-label-text" x="578" y="163" text-anchor="middle">TEMPORALIS</text>
               </g>
             </g>
 
             <!-- MASSETER — thick diagonal muscle cheekbone to jaw angle -->
             <g class="hotspot" data-muscle="masseter" tabindex="0" role="button" aria-label="Masseter muscle">
               <path class="hotspot-fill" fill="#E8A87C"
-                d="M330 445 Q390 425 460 428 Q530 432 590 460 Q640 488 655 550 Q668 610 650 675 Q630 740 588 778 Q540 812 478 815 Q412 816 362 782 Q314 746 298 682 Q282 616 292 550 Q304 488 330 445 Z"/>
+                d="M440 448 Q510 432 580 440 Q645 450 685 498 Q715 540 705 600 Q694 658 660 700 Q620 740 565 752 Q506 762 454 736 Q402 708 378 656 Q355 604 365 548 Q376 490 440 448 Z"/>
               <g class="pin-group" data-label="masseter">
-                <line class="pin-line" x1="490" y1="620" x2="310" y2="590"/>
-                <circle class="pin-circle" cx="490" cy="620" r="7"/>
-                <rect class="pin-label-bg" x="118" y="568" width="185" height="30" rx="5"/>
-                <text class="pin-label-text" x="210" y="588" text-anchor="middle">MASSETER</text>
+                <line class="pin-line" x1="545" y1="590" x2="370" y2="590"/>
+                <circle class="pin-circle" cx="545" cy="590" r="7"/>
+                <rect class="pin-label-bg" x="178" y="568" width="185" height="30" rx="5"/>
+                <text class="pin-label-text" x="270" y="588" text-anchor="middle">MASSETER</text>
               </g>
             </g>
 
@@ -278,10 +278,10 @@
             <!-- DIGASTRIC — long tendon/muscle running inferiorly below jaw -->
             <g class="hotspot" data-muscle="digastric" tabindex="0" role="button" aria-label="Digastric muscle">
               <path class="hotspot-fill" fill="#E87C9A"
-                d="M430 895 Q520 870 620 858 Q720 848 810 852 Q880 856 920 872 Q950 886 945 908 Q938 928 885 940 Q815 952 720 952 Q620 950 530 938 Q455 926 430 910 Q418 898 430 895 Z"/>
+                d="M360 880 Q430 858 520 848 Q610 840 690 848 Q760 856 800 874 Q828 888 820 910 Q810 930 760 942 Q690 954 610 952 Q525 948 448 930 Q388 914 362 896 Q350 884 360 880 Z"/>
               <g class="pin-group" data-label="digastric">
-                <line class="pin-line" x1="680" y1="900" x2="760" y2="960"/>
-                <circle class="pin-circle" cx="680" cy="900" r="7"/>
+                <line class="pin-line" x1="590" y1="900" x2="760" y2="960"/>
+                <circle class="pin-circle" cx="590" cy="900" r="7"/>
                 <rect class="pin-label-bg" x="756" y="944" width="165" height="30" rx="5"/>
                 <text class="pin-label-text" x="839" y="964" text-anchor="middle">DIGASTRIC</text>
               </g>
