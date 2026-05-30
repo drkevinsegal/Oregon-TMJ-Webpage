@@ -20,9 +20,11 @@
   <br>
   <button class="muscle-btn" style="background:#7CB9E8;color:#1a2328" onclick="setMuscle('temporalis')">Temporalis</button>
   <button class="muscle-btn" style="background:#E8A87C;color:#1a2328" onclick="setMuscle('masseter')">Masseter</button>
+  <button class="muscle-btn" style="background:#7CE8A8;color:#1a2328" onclick="setMuscle('lateral-pterygoid')">Lateral Pterygoid</button>
+  <button class="muscle-btn" style="background:#A87CE8;color:#1a2328" onclick="setMuscle('medial-pterygoid')">Medial Pterygoid</button>
   <button class="muscle-btn" style="background:#E87C9A;color:#1a2328" onclick="setMuscle('digastric')">Digastric</button>
-  <button class="muscle-btn" style="background:#666;color:#fff" onclick="clearPoints()">Clear Last</button>
-  <button class="muscle-btn" style="background:#E03030;color:#fff" onclick="clearAll()">Clear All</button>
+  <button class="muscle-btn" style="background:#666;color:#fff" onclick="clearPoints()">Undo Last</button>
+  <button class="muscle-btn" style="background:#E03030;color:#fff" onclick="clearAll()">Clear Current</button>
   <span id="current-muscle" style="margin-left:12px;font-weight:bold;color:#A8D8E8">Select a muscle above</span>
   <div id="coords">Path will appear here — copy and paste to Claude</div>
   <div id="points"></div>
@@ -38,26 +40,27 @@ let allShapes = {};
 const colors = {
   temporalis: '#7CB9E8',
   masseter: '#E8A87C',
+  'lateral-pterygoid': '#7CE8A8',
+  'medial-pterygoid': '#A87CE8',
   digastric: '#E87C9A'
 };
 
 function setMuscle(name) {
   currentMuscle = name;
   if (!allShapes[name]) allShapes[name] = [];
-  document.getElementById('current-muscle').textContent = 'Recording: ' + name + ' (' + (allShapes[name].length) + ' points so far)';
+  document.getElementById('current-muscle').textContent = 'Recording: ' + name + ' (' + allShapes[name].length + ' points so far)';
   updateDisplay();
 }
 
 function clearPoints() {
-  if (currentMuscle && allShapes[currentMuscle]) {
+  if (currentMuscle && allShapes[currentMuscle] && allShapes[currentMuscle].length > 0) {
     allShapes[currentMuscle].pop();
     updateDisplay();
   }
 }
 
 function clearAll() {
-  if (currentMuscle) allShapes[currentMuscle] = [];
-  updateDisplay();
+  if (currentMuscle) { allShapes[currentMuscle] = []; updateDisplay(); }
 }
 
 document.getElementById('overlay').addEventListener('click', function(e) {
@@ -73,51 +76,44 @@ document.getElementById('overlay').addEventListener('click', function(e) {
 
 function updateDisplay() {
   const pts = currentMuscle && allShapes[currentMuscle] ? allShapes[currentMuscle] : [];
-  
-  // Build SVG
   const svg = document.getElementById('overlay');
   svg.innerHTML = '';
-  
+
   Object.entries(allShapes).forEach(([name, points]) => {
-    if (points.length < 2) {
-      points.forEach(p => {
-        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
-        c.setAttribute('cx',p[0]); c.setAttribute('cy',p[1]); c.setAttribute('r','10');
-        c.setAttribute('fill', colors[name] || '#fff'); c.setAttribute('fill-opacity','0.8');
-        svg.appendChild(c);
-      });
-      return;
+    if (!points.length) return;
+    const color = colors[name] || '#fff';
+
+    if (points.length >= 2) {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      const d = 'M' + points.map(p => p[0]+' '+p[1]).join(' L') + ' Z';
+      path.setAttribute('d', d);
+      path.setAttribute('fill', color);
+      path.setAttribute('fill-opacity', '0.4');
+      path.setAttribute('stroke', color);
+      path.setAttribute('stroke-width', '3');
+      svg.appendChild(path);
     }
-    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-    const d = 'M' + points.map(p=>p[0]+' '+p[1]).join(' L') + ' Z';
-    path.setAttribute('d', d);
-    path.setAttribute('fill', colors[name] || '#fff');
-    path.setAttribute('fill-opacity','0.4');
-    path.setAttribute('stroke', colors[name] || '#fff');
-    path.setAttribute('stroke-width','3');
-    svg.appendChild(path);
-    
-    points.forEach((p,i) => {
-      const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
-      c.setAttribute('cx',p[0]); c.setAttribute('cy',p[1]); c.setAttribute('r','8');
-      c.setAttribute('fill', colors[name]||'#fff'); c.setAttribute('stroke','#fff'); c.setAttribute('stroke-width','2');
+
+    points.forEach((p, i) => {
+      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('cx', p[0]); c.setAttribute('cy', p[1]); c.setAttribute('r', '8');
+      c.setAttribute('fill', color); c.setAttribute('stroke', '#fff'); c.setAttribute('stroke-width', '2');
       svg.appendChild(c);
-      const t = document.createElementNS('http://www.w3.org/2000/svg','text');
-      t.setAttribute('x',p[0]+14); t.setAttribute('y',p[1]+6);
-      t.setAttribute('fill','#fff'); t.setAttribute('font-size','22'); t.setAttribute('font-weight','bold');
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('x', p[0]+14); t.setAttribute('y', p[1]+6);
+      t.setAttribute('fill', '#fff'); t.setAttribute('font-size', '22'); t.setAttribute('font-weight', 'bold');
       t.textContent = i+1;
       svg.appendChild(t);
     });
   });
 
-  // Show path for current muscle
   if (pts.length >= 2) {
-    const d = 'M' + pts.map(p=>p[0]+' '+p[1]).join(' L') + ' Z';
+    const d = 'M' + pts.map(p => p[0]+' '+p[1]).join(' L') + ' Z';
     document.getElementById('coords').textContent = d;
   } else {
-    document.getElementById('coords').textContent = pts.length + ' point(s) — need at least 2 to form a shape';
+    document.getElementById('coords').textContent = pts.length + ' point(s) clicked — need at least 2';
   }
-  document.getElementById('points').textContent = pts.map((p,i)=>`${i+1}: x=${p[0]}, y=${p[1]}`).join('\n');
+  document.getElementById('points').textContent = pts.map((p,i) => (i+1)+': x='+p[0]+', y='+p[1]).join('\n');
 }
 </script>
 </body>
