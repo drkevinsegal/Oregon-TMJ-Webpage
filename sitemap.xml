@@ -152,6 +152,15 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Articles Index -->
+  <url>
+    <loc>https://www.oregontmj.com/tmj-articles-portland-oregon.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- How to Find a TMJ Chiropractor -->
   <url>
     <loc>https://www.oregontmj.com/how-to-find-a-tmj-chiropractor-portland-oregon.html</loc>
     <lastmod>2026-07-03</lastmod>
