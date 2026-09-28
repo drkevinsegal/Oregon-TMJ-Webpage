@@ -175,4 +175,28 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- TMJ and Hypermobility -->
+  <url>
+    <loc>https://www.oregontmj.com/tmj-hypermobility-portland-oregon.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Advanced TMJ Treatments -->
+  <url>
+    <loc>https://www.oregontmj.com/tmj-advanced-treatments-sellwood-oregon.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Mandibular Tori and Bruxism -->
+  <url>
+    <loc>https://www.oregontmj.com/tmj-mandibular-tori-bruxism-portland-oregon.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
